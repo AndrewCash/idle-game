@@ -31,3 +31,32 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* <a href="#" class="myButton">green</a> */
+
+Button {
+    -moz-box-shadow: 6px 6px 0px -1px #9fb4f2;
+	-webkit-box-shadow: 6px 6px 0px -1px #9fb4f2;
+	box-shadow: 6px 6px 0px -1px #9fb4f2;
+	background-color:#81a8eb;
+	-moz-border-radius:20px;
+	-webkit-border-radius:20px;
+	border-radius:20px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:22px;
+	padding:20px 46px;
+	text-decoration:none;
+	text-shadow:0px 0px 6px #283966;
+}
+Button:hover {
+	background-color:#476e9e;
+}
+Button:active {
+	position:relative;
+	top:1px;
+}
