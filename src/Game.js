@@ -6,8 +6,11 @@ class Game extends React.Component {
     constructor() {
         super();
         this.state = {
-            happiness: 0
-
+            happiness: 0,
+            fat: 0,
+            clout: 0,
+            tech: 0,
+            money: 0
         }
     }
 
@@ -21,8 +24,9 @@ class Game extends React.Component {
 
 
     render() {
-
+        console.log(this.state);
         return (
+
             <div>
                 <button onClick="handleCoolMathGame" >visit coolmathgames.com</button>
                 <ProgressBar now={60} />
