@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components'
-import {ProgressBar} from 'react-bootstrap'
+import {
+          Button,
+          ProgressBar,
+          Container,
+          Row,
+          Col
+       } from 'react-bootstrap'
 
 const resEnum = {
     HAP: 1,
@@ -54,11 +60,25 @@ class Game extends React.Component {
     render() {
         console.log(this.state);
         return (
-
             <div>
-                <button onClick={event => this.resourceUpdate(resEnum.HAP, 5)} >visit coolmathgames.com</button>
-                {console.log(this.state.resources[0])}
-                <ProgressBar now={60} />
+                <Container>
+                    <Row>
+                        <Col sm={4}>
+                        <Button
+                            onClick={event => this.resourceUpdate(resEnum.HAP, 5)}
+                            variant="secondary"
+                            size="sm"
+                            >
+                        visit coolmathgames.com
+                        </Button>
+                        {console.log(this.state.resources[0])}
+                        </Col>
+
+                        <Col sm={8}>
+                            <ProgressBar now={60} />
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }
