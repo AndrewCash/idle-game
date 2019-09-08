@@ -28,7 +28,8 @@ class Game extends React.Component {
         return (
 
             <div>
-                <button onClick={this.handleCoolMathGame} >visit coolmathgames.com</button>
+                {//<button onClick={this.handleCoolMathGame} >visit coolmathgames.com</button>
+                }
                 <ProgressBar now={60} />
             </div>
         )
