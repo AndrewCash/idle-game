@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components'
-import {ProgressBar} from 'react-bootstrap'
+// import styled from 'styled-components'
+import { ProgressBar } from 'react-bootstrap'
 
 class Game extends React.Component {
     constructor() {
@@ -28,7 +28,7 @@ class Game extends React.Component {
         return (
 
             <div>
-                <button onClick="handleCoolMathGame" >visit coolmathgames.com</button>
+                <button onClick={this.handleCoolMathGame} >visit coolmathgames.com</button>
                 <ProgressBar now={60} />
             </div>
         )
