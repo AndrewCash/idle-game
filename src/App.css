@@ -35,7 +35,13 @@
 
 /* <a href="#" class="myButton">green</a> */
 
-Button {
+
+/* Goofy style for button
+    kind of ugly
+    use at your discretion
+    
+*/
+/* Button {
     -moz-box-shadow: 6px 6px 0px -1px #9fb4f2;
 	-webkit-box-shadow: 6px 6px 0px -1px #9fb4f2;
 	box-shadow: 6px 6px 0px -1px #9fb4f2;
@@ -59,4 +65,4 @@ Button:hover {
 Button:active {
 	position:relative;
 	top:1px;
-}
+} */
