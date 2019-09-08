@@ -1,6 +1,12 @@
 import React from 'react';
 // import styled from 'styled-components'
-import { Button, ProgressBar } from 'react-bootstrap'
+import {
+          Button,
+          ProgressBar,
+          Container,
+          Row,
+          Col
+       } from 'react-bootstrap'
 
 class Game extends React.Component {
     constructor() {
@@ -26,18 +32,24 @@ class Game extends React.Component {
     render() {
         console.log(this.state);
         return (
-
             <div>
-                <Button
-                    onClick={this.handleCoolMathGame}
-                    variant="secondary"
-                    size="lg"
-                    >
-                visit coolmathgames.com
-                </Button>
+                <Container>
+                    <Row>
+                        <Col sm={4}>
+                        <Button
+                            onClick={this.handleCoolMathGame}
+                            variant="secondary"
+                            size="sm"
+                            >
+                        visit coolmathgames.com
+                        </Button>
+                        </Col>
 
-
-                <ProgressBar now={60} />
+                        <Col sm={8}>
+                            <ProgressBar now={60} />
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }
