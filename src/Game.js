@@ -63,7 +63,7 @@ class Game extends React.Component {
             <div>
                 <Container>
                     <Row>
-                        <Col sm={4}>
+                        <Col >
                         <Button
                             onClick={event => this.resourceUpdate(resEnum.HAP, 5)}
                             variant="secondary"
@@ -74,10 +74,18 @@ class Game extends React.Component {
                         {console.log(this.state.resources[0])}
                         </Col>
 
-                        <Col sm={8}>
-                            <ProgressBar now={60} />
+                        <Col >
+                            <ProgressBar now={this.state.resources[0].value} />
+                        </Col>
+                        <Col>
+                            <p>Max Happiness: {this.state.resources[0].value} </p>
+                            <p>Max Fat: {this.state.resources[1].value} </p>
+                            <p>Max Clout: {this.state.resources[2].value} </p>
+                            <p>Max Tech: {this.state.resources[3].value} </p>
+                            <p>Max Money: {this.state.resources[4].value} </p>
                         </Col>
                     </Row>
+
                 </Container>
             </div>
         )
