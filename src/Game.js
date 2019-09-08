@@ -1,5 +1,5 @@
 import React from 'react';
-// import styled from 'styled-components'
+import styled from 'styled-components'
 import {
           Button,
           ProgressBar,
@@ -8,26 +8,54 @@ import {
           Col
        } from 'react-bootstrap'
 
+const resEnum = {
+    HAP: 1,
+    FAT: 2,
+    CLOUT: 3,
+    TECH: 4,
+    MONEY: 5
+
+}
+
 class Game extends React.Component {
+
     constructor() {
         super();
-        this.state = {
-            happiness: 0,
-            fat: 0,
-            clout: 0,
-            tech: 0,
-            money: 0
-        }
+
+        let resourceArray = [
+            {
+                id: resEnum.HAP, value: 0
+            },
+            {
+                id: resEnum.FAT, value: 0
+            },
+            {
+                id: resEnum.CLOUT, value: 0
+            },
+            {
+                id: resEnum.TECH, value: 0
+            },
+            {
+                id: resEnum.MONEY, value: 0
+            }
+        ]
+
+        this.state = {resources: resourceArray}
     }
 
-    handleCoolMathGame() {
+    resourceUpdate(id, delta) {
         console.log("played a a game")
 
-        this.setState({
-            happiness: 5
+        this.setState(prevState => {
+            let resources = prevState.resources.map(res => {
+                if (res.id === id) {
+                    res.value += delta
+                }
+                return res
+            })
+            return resources
         })
     }
-
 
     render() {
         console.log(this.state);
@@ -37,12 +65,13 @@ class Game extends React.Component {
                     <Row>
                         <Col sm={4}>
                         <Button
-                            onClick={this.handleCoolMathGame}
+                            onClick={event => this.resourceUpdate(resEnum.HAP, 5)}
                             variant="secondary"
                             size="sm"
                             >
                         visit coolmathgames.com
                         </Button>
+                        {console.log(this.state.resources[0])}
                         </Col>
 
                         <Col sm={8}>
