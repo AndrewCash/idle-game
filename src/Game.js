@@ -1,27 +1,26 @@
 import React from 'react';
-import styled from 'styled-components'
+import resourceArray from "./ResourceArray"
 import {
           Button,
           ProgressBar,
           Container,
           Row,
-          Col
+          Col,
+          Navbar,
+          Nav
        } from 'react-bootstrap'
 
 const resEnum = {
-    HAP: 1,
-    FAT: 2,
-    CLOUT: 3,
-    TECH: 4,
-    MONEY: 5
-
+   HAP: 1,
+   FAT: 2,
+   CLOUT: 3,
+   TECH: 4,
+   MONEY: 5
 }
 
 class Game extends React.Component {
-
     constructor() {
         super();
-
         let resourceArray = [
             {
                 id: resEnum.HAP, value: 0
@@ -78,11 +77,16 @@ class Game extends React.Component {
                             <ProgressBar now={this.state.resources[0].value} />
                         </Col>
                         <Col>
-                            <p>Max Happiness: {this.state.resources[0].value} </p>
-                            <p>Max Fat: {this.state.resources[1].value} </p>
-                            <p>Max Clout: {this.state.resources[2].value} </p>
-                            <p>Max Tech: {this.state.resources[3].value} </p>
-                            <p>Max Money: {this.state.resources[4].value} </p>
+                            <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
+                                <Navbar.Brand>Addiction Sim</Navbar.Brand>
+                                <Nav className="mr-auto flex-column">
+                                    <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
+                                    <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
+                                    <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
+                                    <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
+                                    <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
+                                </Nav>
+                            </Navbar>
                         </Col>
                     </Row>
 
