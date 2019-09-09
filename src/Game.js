@@ -4,18 +4,12 @@ import {
           Row,
           Col,
           Navbar,
-          Nav
+          Nav,
+          Tab
        } from 'react-bootstrap'
 
-import Addiction from './Addiction.js'
-
-const resEnum = {
-   HAP: 1,
-   FAT: 2,
-   CLOUT: 3,
-   TECH: 4,
-   MONEY: 5
-}
+import resEnum from './resEnum.js'
+import AddictionList from './AddictionList.js'
 
 class Game extends React.Component {
     constructor() {
@@ -44,12 +38,13 @@ class Game extends React.Component {
         this.resourceUpdate = this.resourceUpdate.bind(this)
     }
 
-    resourceUpdate(id, delta) {
-        //console.log("played a a game")
+    resourceUpdate(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
-                if (res.id === id) {
-                    res.value += delta
+                for (let i = 0; i < ids.length; i++) {
+                    if (res.id === ids[i]) {
+                        res.value += deltas[i]
+                    }
                 }
                 return res
             })
@@ -58,18 +53,45 @@ class Game extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
+                <h1>Addiction Sim</h1>
+
                 <Container>
                     <Row>
-                        <Col >
-                          <Addiction res={this.state} updateFunction={this.resourceUpdate} />
+                        <Col sm={9}>
+                            <Tab.Container defaultActiveKey="addictions">
+                                <Row>
+                                    <Col sm={2}>
+                                        <Nav variant="pills" className="flex-column">
+                                            <Nav.Item>
+                                                <Nav.Link eventKey="addictions">Addictions</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link eventKey="automation">Automation</Nav.Link>
+                                            </Nav.Item>
+                                        </Nav>
+                                    </Col>
+                                    <Col sm={10}>
+                                        <Tab.Content>
+                                            <Tab.Pane eventKey="addictions">
+                                                <AddictionList updateResource={this.resourceUpdate}/>
+                                            </Tab.Pane>
+                                        </Tab.Content>
+                                        <Tab.Content>
+                                            <Tab.Pane eventKey="automation">
+                                                <p>Keep on chuggin</p>
+                                            </Tab.Pane>
+                                        </Tab.Content>
+                                    </Col>
+                                </Row>
+                            </Tab.Container>
                         </Col>
-                        <Col>
+
+                        <Col sm={3}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
-                                <Navbar.Brand>Addiction Sim</Navbar.Brand>
-                                <Nav className="mr-auto flex-column" variant="tabs">
+                                <Navbar.Brand>Resources</Navbar.Brand>
+                                <Nav className="mr-auto flex-column">
                                     <Nav.Item>
                                         <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
                                     </Nav.Item>
