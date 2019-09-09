@@ -70,9 +70,6 @@ class Addiction extends React.Component {
     }
 
     render() {
-
-        //console.log("Addiction props ", this.props)
-
         return (
             <Container>
                 <Row>
@@ -83,6 +80,7 @@ class Addiction extends React.Component {
                             this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
                         }}
                         variant="primary"
+                        block
                         >
                     {this.props.addictionData.text}
                     </Button>
