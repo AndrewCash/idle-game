@@ -9,6 +9,8 @@ import {
           Nav
        } from 'react-bootstrap'
 
+import Addiction from './Addiction.js'
+
 const resEnum = {
    HAP: 1,
    FAT: 2,
@@ -38,12 +40,14 @@ class Game extends React.Component {
             }
         ]
 
-        this.state = {resources: resourceArray}
+        this.state = {
+            resources: resourceArray
+        }
+        this.resourceUpdate = this.resourceUpdate.bind(this)
     }
 
     resourceUpdate(id, delta) {
-        console.log("played a a game")
-
+        //console.log("played a a game")
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 if (res.id === id) {
@@ -62,18 +66,7 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col >
-                        <Button
-                            onClick={event => this.resourceUpdate(resEnum.HAP, 5)}
-                            variant="secondary"
-                            size="sm"
-                            >
-                        visit coolmathgames.com
-                        </Button>
-                        {console.log(this.state.resources[0])}
-                        </Col>
-
-                        <Col >
-                            <ProgressBar now={this.state.resources[0].value} />
+                          <Addiction res={this.state} updateFunction={this.resourceUpdate} />
                         </Col>
                         <Col>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
@@ -94,13 +87,10 @@ class Game extends React.Component {
                                     <Nav.Item>
                                         <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
                                     </Nav.Item>
-
                                 </Nav>
-
                             </Navbar>
                         </Col>
                     </Row>
-
                 </Container>
             </div>
         )
