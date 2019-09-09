@@ -31,7 +31,7 @@ class Addiction extends React.Component {
                 }
             })
 
-            this.props.updateFunction(1, 5)
+            this.props.updateResource(1, 5)
             // setTimeout(() => {
             //     this.state.allowClick = true
             // }, 5000)
@@ -40,11 +40,14 @@ class Addiction extends React.Component {
 
     updateProgressBar(clearProgBar, incrementProgBar) {
         if (this.state.allowClick) {
-            let identity = setInterval(() => progress(this.state.barWidth), 200)
+            let identity = setInterval(() => progress(this.state.barWidth), 100)
             function progress(width) {
                 if (width >= 100) {
-                    clearInterval(identity)
-                    clearProgBar()
+                    setTimeout(() => {
+                        clearInterval(identity)
+                        clearProgBar()
+                    }, 500)
+
                 } else {
                     incrementProgBar()
                 }
@@ -72,6 +75,8 @@ class Addiction extends React.Component {
 
     render() {
 
+        console.log("Addiction props ", this.props)
+
         return (
             <Container>
                 <Row>
@@ -83,6 +88,7 @@ class Addiction extends React.Component {
                         }}
                         variant="secondary"
                         >
+
                     visit coolmathgames.com
                     </Button>
                     </Col>

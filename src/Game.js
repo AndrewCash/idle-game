@@ -8,6 +8,7 @@ import {
        } from 'react-bootstrap'
 
 import Addiction from './Addiction.js'
+import AddictionList from './AddictionList.js'
 
 const resEnum = {
    HAP: 1,
@@ -58,7 +59,7 @@ class Game extends React.Component {
     }
 
     render() {
-        console.log(this.state);
+        //console.log(this.state);
 
         // const addictionItems = this.state.map(item => <Addiction res={this.state} updateFunction={this.resourceUpdate})
 
@@ -67,14 +68,18 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                          <Addiction res={this.state} updateFunction={this.resourceUpdate} />
-                          {// AddictionList res={this.state} updateFunction={this.resourceUpdate}/>
-                          }
+                         { // <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
+                          //
+                          // {// <Navbar >
+                          // // </Navbar>
+}
+                          <Addiction res={this.state} updateResource={this.resourceUpdate} />
+
                         </Col>
                         <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Addiction Sim</Navbar.Brand>
-                                <Nav className="mr-auto flex-column" variant="tabs">
+                                <Nav className="mr-auto flex-column">
                                     <Nav.Item>
                                         <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
                                     </Nav.Item>
