@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components'
 import {
           Button,
           ProgressBar,
@@ -31,7 +32,7 @@ class Addiction extends React.Component {
                 }
             })
 
-            this.props.updateFunction(1, 5)
+            this.props.updateFunction(this.props.ids, this.props.deltas)
             // setTimeout(() => {
             //     this.state.allowClick = true
             // }, 5000)
@@ -65,7 +66,7 @@ class Addiction extends React.Component {
         this.setState(prevState => {
             return {
                 allowClick: prevState.allowClick,
-                barWidth: prevState.barWidth + 5
+                barWidth: prevState.barWidth + 100*200/this.props.cooldown
             }
         })
     }
@@ -83,7 +84,7 @@ class Addiction extends React.Component {
                         }}
                         variant="secondary"
                         >
-                    visit coolmathgames.com
+                    {this.props.text}
                     </Button>
                     </Col>
 
