@@ -1,5 +1,7 @@
 import React from 'react'
 import {
+          Button,
+          ProgressBar,
           Container,
           Row,
           Col,
@@ -63,10 +65,10 @@ class Game extends React.Component {
             <div>
                 <Container>
                     <Row>
-                        <Col sm={8}>
+                        <Col >
                           <Addiction res={this.state} updateFunction={this.resourceUpdate} />
                         </Col>
-                        <Col sm={4}>
+                        <Col>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Addiction Sim</Navbar.Brand>
                                 <Nav className="mr-auto flex-column" variant="tabs">
