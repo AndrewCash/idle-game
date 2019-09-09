@@ -42,11 +42,8 @@ class Addiction extends React.Component {
             let identity = setInterval(() => progress(this.state.barWidth), 100)
             function progress(width) {
                 if (width >= 100) {
-                    setTimeout(() => {
                         clearInterval(identity)
                         clearProgBar()
-                    }, 500)
-
                 } else {
                     incrementProgBar()
                 }
