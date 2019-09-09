@@ -13,49 +13,29 @@ class AddictionList extends React.Component {
 
         return (
             <div>
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           addictionData= {addictionData[0]}
-                />
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           addictionData= {addictionData[1]}
-                />
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           addictionData= {addictionData[2]}
-                />
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           addictionData= {addictionData[3]}
-                />
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           addictionData= {addictionData[4]}
-                />
+
                 <Container>
                     <Tabs>
                         <Tab eventKey="addictions" title="Addictions">
                             <Addiction
-                               updateResource={this.props.updateResource}
-                               text="visit coolmathgames.com"
-                               cooldown={5000}
-                               ids={[1]}
-                               deltas={[5]}
+                                       updateResource={this.props.updateResource}
+                                       addictionData= {addictionData[0]}
                             />
                             <Addiction
-                               updateResource={this.props.updateResource}
-                               text="visit coolmathgames.com"
-                               cooldown={5000}
-                               ids={[1]}
-                               deltas={[5]}
+                                       updateResource={this.props.updateResource}
+                                       addictionData= {addictionData[1]}
                             />
                             <Addiction
-                               updateResource={this.props.updateResource}
-                               text="visit coolmathgames.com"
-                               cooldown={5000}
-                               ids={[1]}
-                               deltas={[5]}
+                                       updateResource={this.props.updateResource}
+                                       addictionData= {addictionData[2]}
+                            />
+                            <Addiction
+                                       updateResource={this.props.updateResource}
+                                       addictionData= {addictionData[3]}
+                            />
+                            <Addiction
+                                       updateResource={this.props.updateResource}
+                                       addictionData= {addictionData[4]}
                             />
                         </Tab>
                         <Tab eventKey="money" title="Money">
@@ -79,7 +59,7 @@ class AddictionList extends React.Component {
                 // />
 
             }
-          
+
             </div>
         )
     }
