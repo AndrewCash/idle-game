@@ -31,8 +31,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-
-            this.props.updateFunction(this.props.ids, this.props.deltas)
+            this.props.updateResource(1, 5)
             // setTimeout(() => {
             //     this.state.allowClick = true
             // }, 5000)
@@ -41,11 +40,14 @@ class Addiction extends React.Component {
 
     updateProgressBar(clearProgBar, incrementProgBar) {
         if (this.state.allowClick) {
-            let identity = setInterval(() => progress(this.state.barWidth), 200)
+            let identity = setInterval(() => progress(this.state.barWidth), 100)
             function progress(width) {
                 if (width >= 100) {
-                    clearInterval(identity)
-                    clearProgBar()
+                    setTimeout(() => {
+                        clearInterval(identity)
+                        clearProgBar()
+                    }, 500)
+
                 } else {
                     incrementProgBar()
                 }
@@ -73,23 +75,27 @@ class Addiction extends React.Component {
 
     render() {
 
+        console.log("Addiction props ", this.props)
+
         return (
             <Container>
                 <Row>
-                    <Col>
+                    <Col className="my-1">
                     <Button
                         onClick={event => {
                             this.handleClick();
                             this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
                         }}
-                        variant="secondary"
+                        variant="primary"
+
                         >
                     {this.props.text}
                     </Button>
                     </Col>
 
-                    <Col>
-                        <ProgressBar now={this.state.barWidth} />
+                    <Col className="my-3">
+                        <ProgressBar className="my-0"
+                                     now={this.state.barWidth} />
                     </Col>
                 </Row>
             </Container>
