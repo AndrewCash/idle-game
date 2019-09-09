@@ -14,37 +14,66 @@ class Addiction extends React.Component {
         super(props)
 
         this.state = {
-            startTime: 0,
-            endTime: 0
+            allowClick: true,
+            barWidth: 0
         }
 
         this.handleClick = this.handleClick.bind(this)
+        this.updateProgressBar = this.updateProgressBar.bind(this)
     }
 
     handleClick() {
-        // this.setState({
-        //     startTime: new Date(),
-        //     endTime: startTime + this.props.
-        // })
+        let now = new Date()
+        if (this.state.allowClick) {
+            this.setState(prevState =>{
+                return {
+                    allowClick: false,
+                    barWidth: prevState.barWidth
+                }
+            })
+            this.props.updateFunction(1, 5)
+            setTimeout(() => {
+                this.state.allowClick = true
+            }, 5000)
+        }
+    }
+
+    updateProgressBar() {
+        let identity = setInterval(progress(this.state.barWidth), 100)
+        function progress(width) {
+            if (width >= 100) {
+
+                clearInterval(identity)
+            } else {
+                this.setState(prevState => {
+                    return {
+                        allowClick: prevState.allowClick,
+                        barWidth: prevState.barWidth + 5
+                    }
+                })
+            }
+        }
     }
 
     render() {
-        let now = 0
+
         return (
             <Container>
                 <Row>
                     <Col>
                     <Button
-                        onClick={event => this.props.updateFunction(this.props.id, 5)}
+                        onClick={event => {
+                            this.handleClick();
+                            // this.updateProgressBar()
+                        }}
                         variant="secondary"
-                        size="sm"
                         >
                     visit coolmathgames.com
                     </Button>
                     </Col>
 
                     <Col>
-                        <ProgressBar now={now} />
+                        <ProgressBar now={this.state.barWidth} />
                     </Col>
                 </Row>
             </Container>
