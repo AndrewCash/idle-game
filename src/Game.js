@@ -79,13 +79,25 @@ class Game extends React.Component {
                         <Col>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Addiction Sim</Navbar.Brand>
-                                <Nav className="mr-auto flex-column">
-                                    <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
-                                    <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
-                                    <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
-                                    <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
-                                    <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
+                                <Nav className="mr-auto flex-column" variant="tabs">
+                                    <Nav.Item>
+                                        <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
+                                    </Nav.Item>
+
                                 </Nav>
+
                             </Navbar>
                         </Col>
                     </Row>
