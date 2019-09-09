@@ -8,6 +8,7 @@ import {
        } from 'react-bootstrap'
 
 import AddictionList from './AddictionList.js'
+import Addiction from './Addiction'
 
 const resEnum = {
    HAP: 1,
@@ -47,8 +48,7 @@ class Game extends React.Component {
     resourceUpdate(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
-                let i = 0
-                for (; i < ids.length; i++) {
+                for (let i = 0; i < ids.length; i++) {
                     if (res.id === ids[i]) {
                         res.value += deltas[i]
                     }
@@ -65,9 +65,10 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                          <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
+                          <AddictionList updateResource={this.resourceUpdate}/>
 
-                          <Addiction updateFunction={this.resourceUpdate} text="visit coolmathgames.com" cooldown={5000} ids={[resEnum.HAP, resEnum.FAT]} deltas={[5, 10]} />
+                         {// <Addiction updateFunction={this.resourceUpdate}    />
+                         }
 
                         </Col>
                         <Col sm={4}>

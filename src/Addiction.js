@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from 'react'
 import {
           Button,
           ProgressBar,
@@ -31,7 +30,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(1, 5)
+            this.props.updateResource(this.props.ids, this.props.deltas)
             // setTimeout(() => {
             //     this.state.allowClick = true
             // }, 5000)
@@ -87,15 +86,13 @@ class Addiction extends React.Component {
                             this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
                         }}
                         variant="primary"
-
                         >
                     {this.props.text}
                     </Button>
                     </Col>
 
                     <Col className="my-3">
-                        <ProgressBar className="my-0"
-                                     now={this.state.barWidth} />
+                        <ProgressBar className="my-0" now={this.state.barWidth} />
                     </Col>
                 </Row>
             </Container>
