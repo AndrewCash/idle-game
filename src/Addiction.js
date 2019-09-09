@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from 'react'
 import {
           Button,
           ProgressBar,
@@ -9,15 +8,12 @@ import {
        } from 'react-bootstrap'
 
 class Addiction extends React.Component {
-
     constructor(props) {
         super(props)
-
         this.state = {
             startTime: 0,
             endTime: 0
         }
-
         this.handleClick = this.handleClick.bind(this)
     }
 
