@@ -7,7 +7,6 @@ import {
           Nav
        } from 'react-bootstrap'
 
-import Addiction from './Addiction.js'
 import AddictionList from './AddictionList.js'
 
 const resEnum = {
@@ -68,13 +67,7 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                         { // <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
-                          //
-                          // {// <Navbar >
-                          // // </Navbar>
-}
-                          <Addiction res={this.state} updateResource={this.resourceUpdate} />
-
+                            <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
                         </Col>
                         <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
