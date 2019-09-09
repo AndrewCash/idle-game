@@ -58,10 +58,6 @@ class Game extends React.Component {
     }
 
     render() {
-        //console.log(this.state);
-
-        // const addictionItems = this.state.map(item => <Addiction res={this.state} updateFunction={this.resourceUpdate})
-
         return (
             <div>
                 <Container>

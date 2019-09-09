@@ -80,21 +80,23 @@ class Addiction extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col>
+                    <Col className="my-1">
                     <Button
                         onClick={event => {
                             this.handleClick();
                             this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
                         }}
-                        variant="secondary"
+                        variant="primary"
+
                         >
 
                     visit coolmathgames.com
                     </Button>
                     </Col>
 
-                    <Col>
-                        <ProgressBar now={this.state.barWidth} />
+                    <Col className="my-3">
+                        <ProgressBar className="my-0"
+                                     now={this.state.barWidth} />
                     </Col>
                 </Row>
             </Container>
