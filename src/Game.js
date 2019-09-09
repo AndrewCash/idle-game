@@ -8,6 +8,8 @@ import {
           Col
        } from 'react-bootstrap'
 
+import Addiction from './Addiction.js'
+
 const resEnum = {
     HAP: 1,
     FAT: 2,
@@ -40,7 +42,10 @@ class Game extends React.Component {
             }
         ]
 
-        this.state = {resources: resourceArray}
+        this.state = {
+            resources: resourceArray
+        }
+        this.resourceUpdate = this.resourceUpdate.bind(this)
     }
 
     resourceUpdate(id, delta) {
@@ -61,24 +66,7 @@ class Game extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <Container>
-                    <Row>
-                        <Col sm={4}>
-                        <Button
-                            onClick={event => this.resourceUpdate(resEnum.HAP, 5)}
-                            variant="secondary"
-                            size="sm"
-                            >
-                        visit coolmathgames.com
-                        </Button>
-                        {console.log(this.state.resources[0])}
-                        </Col>
-
-                        <Col sm={8}>
-                            <ProgressBar now={60} />
-                        </Col>
-                    </Row>
-                </Container>
+                <Addiction res={this.state} updateFunction={this.resourceUpdate} />
             </div>
         )
     }
