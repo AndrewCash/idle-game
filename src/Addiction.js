@@ -8,15 +8,12 @@ import {
        } from 'react-bootstrap'
 
 class Addiction extends React.Component {
-
     constructor(props) {
         super(props)
-
         this.state = {
             allowClick: true,
             barWidth: 0
         }
-
         this.handleClick = this.handleClick.bind(this)
         this.updateProgressBar = this.updateProgressBar.bind(this)
     }

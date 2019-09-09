@@ -59,14 +59,18 @@ class Game extends React.Component {
 
     render() {
         console.log(this.state);
+
+        // const addictionItems = this.state.map(item => <Addiction res={this.state} updateFunction={this.resourceUpdate})
+
         return (
             <div>
                 <Container>
                     <Row>
-                        <Col >
+                        <Col sm={8}>
                           <Addiction res={this.state} updateFunction={this.resourceUpdate} />
+                          // AddictionList res={this.state} updateFunction={this.resourceUpdate}/>
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Addiction Sim</Navbar.Brand>
                                 <Nav className="mr-auto flex-column" variant="tabs">
