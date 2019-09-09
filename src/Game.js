@@ -9,7 +9,6 @@ import {
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
-import Addiction from './Addiction'
 
 class Game extends React.Component {
     constructor() {
@@ -58,10 +57,7 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                          <AddictionList updateResource={this.resourceUpdate}/>
-
-                         {// <Addiction updateFunction={this.resourceUpdate}    />
-                         }
+                            <AddictionList updateResource={this.resourceUpdate}/>
 
                         </Col>
                         <Col sm={4}>
