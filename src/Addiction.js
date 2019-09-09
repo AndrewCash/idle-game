@@ -29,11 +29,11 @@ class Addiction extends React.Component {
     }
 
     render() {
-
+        let now = 0
         return (
             <Container>
                 <Row>
-                    <Col sm={4}>
+                    <Col>
                     <Button
                         onClick={event => this.props.updateFunction(this.props.id, 5)}
                         variant="secondary"
@@ -43,8 +43,8 @@ class Addiction extends React.Component {
                     </Button>
                     </Col>
 
-                    <Col sm={8}>
-                        <ProgressBar now={60} />
+                    <Col>
+                        <ProgressBar now={now} />
                     </Col>
                 </Row>
             </Container>

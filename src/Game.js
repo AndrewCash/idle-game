@@ -1,5 +1,4 @@
-import React from 'react';
-import resourceArray from "./ResourceArray"
+import React from 'react'
 import {
           Button,
           ProgressBar,
