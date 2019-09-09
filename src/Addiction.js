@@ -80,6 +80,7 @@ class Addiction extends React.Component {
                             this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
                         }}
                         variant="primary"
+                        break
                         >
                     {this.props.addictionData.text}
                     </Button>
