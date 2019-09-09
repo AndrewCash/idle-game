@@ -63,10 +63,10 @@ class Game extends React.Component {
             <div>
                 <Container>
                     <Row>
-                        <Col >
+                        <Col sm={8}>
                           <Addiction res={this.state} updateFunction={this.resourceUpdate} />
                         </Col>
-                        <Col>
+                        <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Addiction Sim</Navbar.Brand>
                                 <Nav className="mr-auto flex-column" variant="tabs">
