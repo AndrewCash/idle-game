@@ -1,5 +1,4 @@
-import React from 'react';
-import resourceArray from "./ResourceArray"
+import React from 'react'
 import {
           Button,
           ProgressBar,
@@ -20,7 +19,7 @@ const resEnum = {
 
 class Game extends React.Component {
     constructor() {
-        super();
+        super()
         let resourceArray = [
             {
                 id: resEnum.HAP, value: 0
