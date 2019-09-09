@@ -1,29 +1,28 @@
 import React from 'react';
-import styled from 'styled-components'
+import resourceArray from "./ResourceArray"
 import {
           Button,
           ProgressBar,
           Container,
           Row,
-          Col
+          Col,
+          Navbar,
+          Nav
        } from 'react-bootstrap'
 
 import Addiction from './Addiction.js'
 
 const resEnum = {
-    HAP: 1,
-    FAT: 2,
-    CLOUT: 3,
-    TECH: 4,
-    MONEY: 5
-
+   HAP: 1,
+   FAT: 2,
+   CLOUT: 3,
+   TECH: 4,
+   MONEY: 5
 }
 
 class Game extends React.Component {
-
     constructor() {
         super();
-
         let resourceArray = [
             {
                 id: resEnum.HAP, value: 0
@@ -49,8 +48,7 @@ class Game extends React.Component {
     }
 
     resourceUpdate(id, delta) {
-        console.log("played a a game")
-
+        //console.log("played a a game")
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 if (res.id === id) {
@@ -66,7 +64,35 @@ class Game extends React.Component {
         console.log(this.state);
         return (
             <div>
-                <Addiction res={this.state} updateFunction={this.resourceUpdate} />
+                <Container>
+                    <Row>
+                        <Col >
+                          <Addiction res={this.state} updateFunction={this.resourceUpdate} />
+                        </Col>
+                        <Col>
+                            <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
+                                <Navbar.Brand>Addiction Sim</Navbar.Brand>
+                                <Nav className="mr-auto flex-column" variant="tabs">
+                                    <Nav.Item>
+                                        <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
+                                    </Nav.Item>
+                                    <Nav.Item>
+                                        <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
+                                    </Nav.Item>
+                                </Nav>
+                            </Navbar>
+                        </Col>
+                    </Row>
+                </Container>
             </div>
         )
     }
