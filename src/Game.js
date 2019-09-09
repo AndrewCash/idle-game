@@ -59,7 +59,7 @@ class Game extends React.Component {
 
                 <Container>
                     <Row>
-                        <Col sm={10}>
+                        <Col sm={9}>
                             <Tab.Container defaultActiveKey="addictions">
                                 <Row>
                                     <Col sm={2}>
@@ -88,7 +88,7 @@ class Game extends React.Component {
                             </Tab.Container>
                         </Col>
 
-                        <Col sm={2}>
+                        <Col sm={3}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
