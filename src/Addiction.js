@@ -70,9 +70,6 @@ class Addiction extends React.Component {
     }
 
     render() {
-
-        //console.log("Addiction props ", this.props)
-
         return (
             <Container>
                 <Row>

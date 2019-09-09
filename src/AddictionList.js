@@ -4,7 +4,10 @@ import addictionData from "./addictionData.js"
 import {
           Container,
           Tabs,
-          Tab
+          Tab,
+          Row,
+          Col,
+          Nav
        } from 'react-bootstrap'
 
 class AddictionList extends React.Component {
@@ -13,10 +16,9 @@ class AddictionList extends React.Component {
 
         return (
             <div>
-
                 <Container>
-                    <Tabs>
-                        <Tab eventKey="addictions" title="Addictions">
+                    <Tabs defaultActiveKey="internet">
+                        <Tab eventKey="internet" title="Internet">
                             <Addiction
                                        updateResource={this.props.updateResource}
                                        addictionData= {addictionData[0]}
@@ -38,27 +40,17 @@ class AddictionList extends React.Component {
                                        addictionData= {addictionData[4]}
                             />
                         </Tab>
+                        <Tab eventKey="food" title="Food">
+                            <p>MMMMM</p>
+                        </Tab>
                         <Tab eventKey="money" title="Money">
                             <p>The Money Store</p>
                             <p>"light nine... to a ten"</p>
                         </Tab>
-                        <Tab eventKey="automation" title="Automation">
-                            <p>Keep on chuggin</p>
-                        </Tab>
+
                     </Tabs>
+
                 </Container>
-
-
-                {
-                // <Addiction
-                //            updateResource={this.props.updateResource}
-                //            text="visit coolmathgames.com"
-                //            cooldown={10000}
-                //            ids={[1, 2]}
-                //            deltas={[5, 10]}
-                // />
-
-            }
 
             </div>
         )
