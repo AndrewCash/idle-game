@@ -7,15 +7,8 @@ import {
           Nav
        } from 'react-bootstrap'
 
+import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
-
-const resEnum = {
-   HAP: 1,
-   FAT: 2,
-   CLOUT: 3,
-   TECH: 4,
-   MONEY: 5
-}
 
 class Game extends React.Component {
     constructor() {

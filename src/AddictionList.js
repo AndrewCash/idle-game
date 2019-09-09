@@ -1,5 +1,6 @@
 import React from "react"
 import Addiction from "./Addiction"
+import addictionData from "./addictionData.js"
 import {
           Container,
           Tabs,
@@ -12,6 +13,26 @@ class AddictionList extends React.Component {
 
         return (
             <div>
+                <Addiction
+                           updateResource={this.props.updateResource}
+                           addictionData= {addictionData[0]}
+                />
+                <Addiction
+                           updateResource={this.props.updateResource}
+                           addictionData= {addictionData[1]}
+                />
+                <Addiction
+                           updateResource={this.props.updateResource}
+                           addictionData= {addictionData[2]}
+                />
+                <Addiction
+                           updateResource={this.props.updateResource}
+                           addictionData= {addictionData[3]}
+                />
+                <Addiction
+                           updateResource={this.props.updateResource}
+                           addictionData= {addictionData[4]}
+                />
                 <Container>
                     <Tabs>
                         <Tab eventKey="addictions" title="Addictions">
@@ -58,9 +79,7 @@ class AddictionList extends React.Component {
                 // />
 
             }
-
-
-
+          
             </div>
         )
     }
