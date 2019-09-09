@@ -10,6 +10,7 @@ import {
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
+import AutomationUpgrades from './AutomationUpgrades.js'
 
 class Game extends React.Component {
     constructor() {
@@ -80,7 +81,7 @@ class Game extends React.Component {
                                         </Tab.Content>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="automation">
-                                                <p>Keep on chuggin</p>
+                                                <AutomationUpgrades />
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Col>
