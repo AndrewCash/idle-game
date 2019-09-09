@@ -44,12 +44,14 @@ class Game extends React.Component {
         this.resourceUpdate = this.resourceUpdate.bind(this)
     }
 
-    resourceUpdate(id, delta) {
-        //console.log("played a a game")
+    resourceUpdate(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
-                if (res.id === id) {
-                    res.value += delta
+                let i = 0
+                for (; i < ids.length; i++) {
+                    if (res.id === ids[i]) {
+                        res.value += deltas[i]
+                    }
                 }
                 return res
             })
@@ -63,7 +65,10 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                            <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
+                          <AddictionList res={this.state} updateResource={this.resourceUpdate}/>
+
+                          <Addiction updateFunction={this.resourceUpdate} text="visit coolmathgames.com" cooldown={5000} ids={[resEnum.HAP, resEnum.FAT]} deltas={[5, 10]} />
+
                         </Col>
                         <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
