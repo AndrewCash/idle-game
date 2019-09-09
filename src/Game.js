@@ -55,12 +55,14 @@ class Game extends React.Component {
     render() {
         return (
             <div>
+                <h1>Addiction Sim</h1>
+
                 <Container>
                     <Row>
-                        <Col sm={8}>
+                        <Col sm={10}>
                             <Tab.Container defaultActiveKey="addictions">
                                 <Row>
-                                    <Col sm={3}>
+                                    <Col sm={2}>
                                         <Nav variant="pills" className="flex-column">
                                             <Nav.Item>
                                                 <Nav.Link eventKey="addictions">Addictions</Nav.Link>
@@ -70,7 +72,7 @@ class Game extends React.Component {
                                             </Nav.Item>
                                         </Nav>
                                     </Col>
-                                    <Col sm={9}>
+                                    <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
                                                 <AddictionList updateResource={this.resourceUpdate}/>
@@ -84,11 +86,11 @@ class Game extends React.Component {
                                     </Col>
                                 </Row>
                             </Tab.Container>
-
                         </Col>
-                        <Col sm={4}>
+
+                        <Col sm={2}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
-                                <Navbar.Brand>Addiction Sim</Navbar.Brand>
+                                <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
                                     <Nav.Item>
                                         <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
