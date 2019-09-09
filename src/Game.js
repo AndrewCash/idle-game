@@ -68,7 +68,8 @@ class Game extends React.Component {
                     <Row>
                         <Col sm={8}>
                           <Addiction res={this.state} updateFunction={this.resourceUpdate} />
-                          // AddictionList res={this.state} updateFunction={this.resourceUpdate}/>
+                          {// AddictionList res={this.state} updateFunction={this.resourceUpdate}/>
+                          }
                         </Col>
                         <Col sm={4}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
