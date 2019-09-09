@@ -4,10 +4,7 @@ import addictionData from "./addictionData.js"
 import {
           Container,
           Tabs,
-          Tab,
-          Row,
-          Col,
-          Nav
+          Tab
        } from 'react-bootstrap'
 
 class AddictionList extends React.Component {
