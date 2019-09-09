@@ -8,7 +8,6 @@ import {
        } from 'react-bootstrap'
 
 import AddictionList from './AddictionList.js'
-import Addiction from './Addiction'
 
 const resEnum = {
    HAP: 1,
@@ -65,10 +64,7 @@ class Game extends React.Component {
                 <Container>
                     <Row>
                         <Col sm={8}>
-                          <AddictionList updateResource={this.resourceUpdate}/>
-
-                         {// <Addiction updateFunction={this.resourceUpdate}    />
-                         }
+                            <AddictionList updateResource={this.resourceUpdate}/>
 
                         </Col>
                         <Col sm={4}>
