@@ -1,5 +1,6 @@
 import React from "react"
 import Addiction from "./Addiction"
+import addictionData from "./addictionData.js"
 
 class AddictionList extends React.Component {
     render() {
@@ -9,48 +10,24 @@ class AddictionList extends React.Component {
             <div>
                 <Addiction
                            updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={5000}
-                           ids={[1]}
-                           deltas={[5]}
+                           addictionData= {addictionData[0]}
                 />
                 <Addiction
                            updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={10000}
-                           ids={[1, 2]}
-                           deltas={[5, 10]}
+                           addictionData= {addictionData[1]}
                 />
                 <Addiction
                            updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={5000}
-                           ids={[1, 2]}
-                           deltas={[5, 10]}
+                           addictionData= {addictionData[2]}
                 />
                 <Addiction
                            updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={5000}
-                           ids={[1, 2]}
-                           deltas={[5, 10]}
+                           addictionData= {addictionData[3]}
                 />
                 <Addiction
                            updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={5000}
-                           ids={[1, 2]}
-                           deltas={[5, 10]}
+                           addictionData= {addictionData[4]}
                 />
-                <Addiction
-                           updateResource={this.props.updateResource}
-                           text="visit coolmathgames.com"
-                           cooldown={5000}
-                           ids={[1, 2]}
-                           deltas={[5, 10]}
-                />
-
-
             </div>
         )
     }

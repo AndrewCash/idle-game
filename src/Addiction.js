@@ -30,7 +30,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(this.props.ids, this.props.deltas)
+            this.props.updateResource(this.props.addictionData.ids, this.props.addictionData.deltas)
             // setTimeout(() => {
             //     this.state.allowClick = true
             // }, 5000)
@@ -64,7 +64,7 @@ class Addiction extends React.Component {
         this.setState(prevState => {
             return {
                 allowClick: prevState.allowClick,
-                barWidth: prevState.barWidth + 100*200/this.props.cooldown
+                barWidth: prevState.barWidth + 100*200/this.props.addictionData.cooldown
             }
         })
     }
@@ -84,7 +84,7 @@ class Addiction extends React.Component {
                         }}
                         variant="primary"
                         >
-                    {this.props.text}
+                    {this.props.addictionData.text}
                     </Button>
                     </Col>
 
