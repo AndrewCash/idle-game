@@ -70,7 +70,7 @@ class AddictionList extends React.Component {
                 ...props.style,
                 }}
             >
-                <p>Unlock Cost: {addictionData[0][1].unlockCost}</p>
+                <p>Unlock Cost: {addictionData[0][this.nextUnlock(0)].unlockCost}</p>
             </div>
         );
 
