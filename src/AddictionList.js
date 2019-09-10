@@ -49,10 +49,9 @@ class AddictionList extends React.Component {
         // return index of next addiction to be unlocked in specified catagory
 
         let addictionCatagory = this.state.purchasedAddictions[catagory]
-        //console.log(addictionData)
-        for (let i = 0; i < addictionCatagory.length; i++) {
-            if (!addictionCatagory[i]) {
-                return (addictionData[catagory][i].text)
+        for (let index = 0; index < addictionCatagory.length; index++) {
+            if (!addictionCatagory[index]) {
+                return (index)
             }
         }
     }
@@ -113,11 +112,13 @@ class AddictionList extends React.Component {
                                 >
                                 <Button
                                     onClick={event => {
-                                        this.buyAddiction(0, 1)
+                                        if (this.props.canAffordAddiction(0,this.nextUnlock(0))) {
+                                            this.buyAddiction(0, this.nextUnlock(0))
+                                        }
                                     }}
                                     variant="secondary"
                                     >
-                                Buy {this.nextUnlock(0)}
+                                Buy {addictionData[0][this.nextUnlock(0)].text}
                                 </Button>
                             </OverlayTrigger>
 

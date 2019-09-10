@@ -68,21 +68,6 @@ class Addiction extends React.Component {
 
     render() {
 
-        const renderTooltip = props => (
-            <div
-                {...props}
-                style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                padding: '2px 10px',
-                color: 'white',
-                borderRadius: 3,
-                ...props.style,
-                }}
-            >
-                <p>Unlock Cost: {this.props.addictionData.unlockCost}</p>
-            </div>
-        );
-
         if (this.props.isPurchased) {
             return (
                 <Container>
