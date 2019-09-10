@@ -56,18 +56,12 @@ class Game extends React.Component {
     }
 
     canAffordAddiction(catagory, index) {
-        console.log(this.state)
-        // true or false
         for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
-            if (addictionData[catagory][index].unlockCost[i] <= this.state.resources[i].value) {
-                return true;
-            } else {
-                console.log("can't afford")
-                return false;
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[i].value) {
+                return false
             }
         }
-
-
+        return true;
     }
 
     render() {
