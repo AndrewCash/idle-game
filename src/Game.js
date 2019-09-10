@@ -36,10 +36,10 @@ class Game extends React.Component {
         this.state = {
             resources: resourceArray
         }
-        this.resourceUpdate = this.resourceUpdate.bind(this)
+        this.updateResources = this.updateResources.bind(this)
     }
 
-    resourceUpdate(ids, deltas) {
+    updateResources(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 for (let i = 0; i < ids.length; i++) {
@@ -76,7 +76,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResource={this.resourceUpdate}/>
+                                                <AddictionList updateResources={this.updateResources} resources={this.state.resources} />
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>

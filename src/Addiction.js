@@ -30,7 +30,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(this.props.addictionData.resIds, this.props.addictionData.deltas)
+            this.props.updateResources(this.props.addictionData.resIds, this.props.addictionData.deltas)
         }
     }
 
