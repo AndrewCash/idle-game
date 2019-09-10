@@ -49,6 +49,7 @@ class AddictionList extends React.Component {
         // return index of next addiction to be unlocked in specified catagory
 
         let addictionCatagory = this.state.purchasedAddictions[catagory]
+        console.log(addictionCatagory)
         for (let index = 0; index < addictionCatagory.length; index++) {
             if (!addictionCatagory[index]) {
                 return (index)
@@ -70,7 +71,12 @@ class AddictionList extends React.Component {
                 ...props.style,
                 }}
             >
-                <p>Unlock Cost: {addictionData[0][this.nextUnlock(0)].unlockCost}</p>
+                <p>Cost:</p>
+                <p>Happiness: {addictionData[0][this.nextUnlock(0)].unlockCost[0]}</p>
+                <p>Fat:       {addictionData[0][this.nextUnlock(0)].unlockCost[1]}</p>
+                <p>Clout:     {addictionData[0][this.nextUnlock(0)].unlockCost[2]}</p>
+                <p>Tech:      {addictionData[0][this.nextUnlock(0)].unlockCost[3]}</p>
+                <p>Money:     {addictionData[0][this.nextUnlock(0)].unlockCost[4]}</p>
             </div>
         );
 
@@ -135,6 +141,26 @@ class AddictionList extends React.Component {
                                 addictionData= {addictionData[1][1]}
                                 isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 1)}
                             />
+{
+                            // <OverlayTrigger
+                            //     placement="right-start"
+                            //     delay={{ show: 250, hide: 400 }}
+                            //     overlay={renderTooltip}
+                            //     >
+                            //     <Button
+                            //         onClick={event => {
+                            //             if (this.props.canAffordAddiction(1,this.nextUnlock(1))) {
+                            //                 this.buyAddiction(1, this.nextUnlock(1))
+                            //             }
+                            //         }}
+                            //         variant="secondary"
+                            //         >
+                            //     Buy {addictionData[1][this.nextUnlock(1)].text}
+                            //     </Button>
+
+                        //    </OverlayTrigger>
+
+                        }
                         </Tab>
 
                         <Tab eventKey="money" title="Money">
