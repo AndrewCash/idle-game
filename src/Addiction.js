@@ -13,6 +13,7 @@ class Addiction extends React.Component {
         super(props)
 
         this.state = {
+            purchased: this.props.purchased,
             allowClick: true,
             barWidth: 0
         }
@@ -67,28 +68,33 @@ class Addiction extends React.Component {
     }
 
     render() {
-        return (
-            <Container>
-                <Row>
-                    <Col className="my-1">
-                    <Button
-                        onClick={event => {
-                            this.handleClick();
-                            this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-                        }}
-                        variant="primary"
-                        block
-                        >
-                    {this.props.addictionData.text}
-                    </Button>
-                    </Col>
 
-                    <Col className="my-3">
-                        <ProgressBar className="my-0" now={this.state.barWidth} />
-                    </Col>
-                </Row>
-            </Container>
-        )
+        if (this.state.purchased) {
+            return (
+                <Container>
+                    <Row>
+                        <Col className="my-1">
+                        <Button
+                            onClick={event => {
+                                this.handleClick();
+                                this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
+                            }}
+                            variant="primary"
+                            block
+                            >
+                        {this.props.addictionData.text}
+                        </Button>
+                        </Col>
+
+                        <Col className="my-3">
+                            <ProgressBar className="my-0" now={this.state.barWidth} />
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        } else {
+            return null
+        }
     }
 }
 

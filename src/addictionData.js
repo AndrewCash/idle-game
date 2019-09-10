@@ -2,10 +2,9 @@ import id from "./resEnum.js"
 
 const addictionData =
 [
+    // *** Start of Internet Tab *** //
+    
     [
-
-        // *** Start of Internet Tab *** //
-
         {
             id: 0,
             name: "coolmathgames",
