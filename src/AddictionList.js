@@ -5,7 +5,8 @@ import {
     Button,
     Container,
     Tabs,
-    Tab
+    Tab,
+    OverlayTrigger
 } from 'react-bootstrap'
 
 class AddictionList extends React.Component {
@@ -44,8 +45,35 @@ class AddictionList extends React.Component {
         })
     }
 
+    nextUnlock(catagory) {
+        // return index of next addiction to be unlocked in specified catagory
+
+        let addictionCatagory = this.state.purchasedAddictions[catagory]
+        //console.log(addictionData)
+        for (let i = 0; i < addictionCatagory.length; i++) {
+            if (!addictionCatagory[i]) {
+                return (addictionData[catagory][i].text)
+            }
+        }
+    }
+
     render() {
-        //console.log(this.props)
+        //console.log(this.state)
+
+        const renderTooltip = (props) => (
+            <div
+                {...props}
+                style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                padding: '2px 10px',
+                color: 'white',
+                borderRadius: 3,
+                ...props.style,
+                }}
+            >
+                <p>Unlock Cost: {addictionData[0][1].unlockCost}</p>
+            </div>
+        );
 
         return (
             <div>
@@ -77,14 +105,22 @@ class AddictionList extends React.Component {
                                 addictionData= {addictionData[0][4]}
                                 isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 4)}
                             />
-                            <Button
-                                onClick={event => {
-                                    this.buyAddiction(0, 1)
-                                }}
-                                variant="secondary"
+
+                            <OverlayTrigger
+                                placement="right-start"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}
                                 >
-                            Buy Something
-                            </Button>
+                                <Button
+                                    onClick={event => {
+                                        this.buyAddiction(0, 1)
+                                    }}
+                                    variant="secondary"
+                                    >
+                                Buy {this.nextUnlock(0)}
+                                </Button>
+                            </OverlayTrigger>
+
                         </Tab>
 
                         <Tab eventKey="food" title="Food">

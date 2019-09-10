@@ -8,9 +8,6 @@ import {
        } from 'react-bootstrap'
 
 class AutomationUpgrades extends React.Component {
-    constructor() {
-        super()
-    }
 
     render() {
 
