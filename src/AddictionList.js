@@ -17,28 +17,31 @@ class AddictionList extends React.Component {
                     <Tabs defaultActiveKey="internet">
                         <Tab eventKey="internet" title="Internet">
                             <Addiction
-                                       updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0][0]}
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][0]}
                             />
                             <Addiction
-                                       updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0][1]}
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][1]}
                             />
                             <Addiction
-                                       updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0][2]}
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][2]}
                             />
                             <Addiction
-                                       updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0][3]}
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][3]}
                             />
                             <Addiction
-                                       updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0][4]}
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][4]}
                             />
                         </Tab>
                         <Tab eventKey="food" title="Food">
-                            <p>MMMMM</p>
+                            <Addiction
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[0][0]}
+                            />
                         </Tab>
                         <Tab eventKey="money" title="Money">
                             <p>The Money Store</p>
