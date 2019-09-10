@@ -1,7 +1,11 @@
 import id from "./resEnum.js"
 
-const addictionData = [
+const addictionData =
+[
     [
+
+        // *** Start of Internet Tab *** //
+
         {
             id: 0,
             name: "coolmathgames",
@@ -43,6 +47,9 @@ const addictionData = [
             deltas: [1000]
         }
     ],
+
+    // *** Start of Food Tab *** //
+
     [
         {
             id: 0,
@@ -62,11 +69,32 @@ const addictionData = [
         },
         {
             id: 2,
-            name: "mcronalds",
+            name: "mcronalds-eat",
             text: "Eat at McRonalds",
             cooldown:2*60*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [500, 1000]
+        }
+    ],
+
+    // *** Start of Money Tab *** //
+
+    [
+        {
+            id: 0,
+            name: "mcronalds-work",
+            text: "Flip burgers",
+            cooldown: 8*1000,
+            resIds: [id.MONEY],
+            deltas: [10]
+        },
+        {
+            id: 1,
+            name: "pizzadelivery",
+            text: "Deliver some pizza",
+            cooldown: 30*1000,
+            resIds: [id.MONEY],
+            deltas: [80]
         }
     ]
 ]

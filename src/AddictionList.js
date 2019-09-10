@@ -40,14 +40,25 @@ class AddictionList extends React.Component {
                         <Tab eventKey="food" title="Food">
                             <Addiction
                                 updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][0]}
+                                addictionData= {addictionData[1][0]}
+                            />
+                            <Addiction
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[1][1]}
                             />
                         </Tab>
                         <Tab eventKey="money" title="Money">
-                            <p>The Money Store</p>
-                            <p>"light nine... to a ten"</p>
+                            <Addiction
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[2][0]}
+                            />
                         </Tab>
-
+                        <Tab eventKey="drugs" title="Drugs">
+                            <Addiction
+                                updateResource={this.props.updateResource}
+                                addictionData= {addictionData[1][0]}
+                            />
+                        </Tab>
                     </Tabs>
 
                 </Container>
