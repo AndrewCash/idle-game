@@ -6,7 +6,8 @@ import {
     Button,
     Container,
     Tabs,
-    Tab
+    Tab,
+    OverlayTrigger
 } from 'react-bootstrap'
 
 class AddictionList extends React.Component {
@@ -54,10 +55,40 @@ class AddictionList extends React.Component {
         return true
     }
 
+    nextUnlock(catagory) {
+        // return index of next addiction to be unlocked in specified catagory
 
-
+        let addictionCatagory = this.state.purchasedAddictions[catagory]
+        console.log(addictionCatagory)
+        for (let index = 0; index < addictionCatagory.length; index++) {
+            if (!addictionCatagory[index]) {
+                return (index)
+            }
+        }
+    }
+      
     render() {
-        //console.log(this.props)
+        //console.log(this.state)
+
+        const renderTooltip = (props) => (
+            <div
+                {...props}
+                style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                padding: '2px 10px',
+                color: 'white',
+                borderRadius: 3,
+                ...props.style,
+                }}
+            >
+                <p>Cost:</p>
+                <p>Happiness: {addictionData[0][this.nextUnlock(0)].unlockCost[0]}</p>
+                <p>Fat:       {addictionData[0][this.nextUnlock(0)].unlockCost[1]}</p>
+                <p>Clout:     {addictionData[0][this.nextUnlock(0)].unlockCost[2]}</p>
+                <p>Tech:      {addictionData[0][this.nextUnlock(0)].unlockCost[3]}</p>
+                <p>Money:     {addictionData[0][this.nextUnlock(0)].unlockCost[4]}</p>
+            </div>
+        );
 
         return (
             <div>
@@ -89,14 +120,24 @@ class AddictionList extends React.Component {
                                 addictionData= {addictionData.internet.conspiracyTheories}
                                 isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories.isPurchased}
                             />
-                            <Button
-                                onClick={event => {
-                                    this.buyAddiction(0, 1)
-                                }}
-                                variant="secondary"
+
+                            <OverlayTrigger
+                                placement="right-start"
+                                delay={{ show: 250, hide: 400 }}
+                                overlay={renderTooltip}
                                 >
-                            Buy Something
-                            </Button>
+                                <Button
+                                    onClick={event => {
+                                        if (this.props.canAffordAddiction(0,this.nextUnlock(0))) {
+                                            this.buyAddiction(0, this.nextUnlock(0))
+                                        }
+                                    }}
+                                    variant="secondary"
+                                    >
+                                Buy {addictionData[0][this.nextUnlock(0)].text}
+                                </Button>
+                            </OverlayTrigger>
+
                         </Tab>
 
                         <Tab eventKey="food" title="Food">
@@ -110,6 +151,26 @@ class AddictionList extends React.Component {
                                 addictionData= {addictionData.food.icecream}
                                 isPurchased= {this.state.purchasedAddictions.food.icecream.isPurchased}
                             />
+{
+                            // <OverlayTrigger
+                            //     placement="right-start"
+                            //     delay={{ show: 250, hide: 400 }}
+                            //     overlay={renderTooltip}
+                            //     >
+                            //     <Button
+                            //         onClick={event => {
+                            //             if (this.props.canAffordAddiction(1,this.nextUnlock(1))) {
+                            //                 this.buyAddiction(1, this.nextUnlock(1))
+                            //             }
+                            //         }}
+                            //         variant="secondary"
+                            //         >
+                            //     Buy {addictionData[1][this.nextUnlock(1)].text}
+                            //     </Button>
+
+                        //    </OverlayTrigger>
+
+                        }
                         </Tab>
 
                         <Tab eventKey="money" title="Money">

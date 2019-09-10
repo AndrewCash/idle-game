@@ -11,6 +11,7 @@ import {
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
+import addictionData from './addictionData'
 
 class Game extends React.Component {
     constructor() {
@@ -37,6 +38,8 @@ class Game extends React.Component {
             resources: resourceArray
         }
         this.updateResources = this.updateResources.bind(this)
+        this.resourceUpdate = this.resourceUpdate.bind(this)
+        this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
     updateResources(ids, deltas) {
@@ -51,6 +54,30 @@ class Game extends React.Component {
             })
             return resources
         })
+    }
+  
+    resourceUpdate(ids, deltas) {
+        this.setState(prevState => {
+            let resources = prevState.resources.map(res => {
+                for (let i = 0; i < ids.length; i++) {
+                    if (res.id === ids[i]) {
+                        res.value += deltas[i]
+                    }
+                }
+                return res
+            })
+            return resources
+        })
+}
+}
+
+    canAffordAddiction(catagory, index) {
+        for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[i].value) {
+                return false
+            }
+        }
+        return true;
     }
 
     render() {
@@ -76,7 +103,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResources={this.updateResources} resources={this.state.resources} />
+                                                <AddictionList updateResource={this.resourceUpdate} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
