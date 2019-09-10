@@ -73,16 +73,16 @@ class Addiction extends React.Component {
                 <Container>
                     <Row>
                         <Col className="my-1">
-                        <Button
-                            onClick={event => {
-                                this.handleClick();
-                                this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-                            }}
-                            variant="primary"
-                            block
-                            >
-                        {this.props.addictionData.text}
-                        </Button>
+                            <Button
+                                onClick={event => {
+                                    this.handleClick();
+                                    this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
+                                }}
+                                variant="primary"
+                                block
+                                >
+                            {this.props.addictionData.text}
+                            </Button>
                         </Col>
 
                         <Col className="my-3">

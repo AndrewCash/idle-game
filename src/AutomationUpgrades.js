@@ -8,9 +8,6 @@ import {
        } from 'react-bootstrap'
 
 class AutomationUpgrades extends React.Component {
-    constructor() {
-        super()
-    }
 
     render() {
 
@@ -44,7 +41,12 @@ class AutomationUpgrades extends React.Component {
                         </OverlayTrigger>
                     </Col>
                     <Col sm="6">
-                        <p>Buy math game bot.</p>
+                        <Row className="justify-content-md-center">
+                            <p>Math game bot.</p>
+                        </Row>
+                        <Row className="justify-content-md-center">
+                            <p>Costs $1000</p>
+                        </Row>
                     </Col>
                 </Row>
             </Container>

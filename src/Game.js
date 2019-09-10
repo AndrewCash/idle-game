@@ -11,6 +11,7 @@ import {
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
+import addictionData from './addictionData'
 
 class Game extends React.Component {
     constructor() {
@@ -37,6 +38,7 @@ class Game extends React.Component {
             resources: resourceArray
         }
         this.resourceUpdate = this.resourceUpdate.bind(this)
+        this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
     resourceUpdate(ids, deltas) {
@@ -51,6 +53,15 @@ class Game extends React.Component {
             })
             return resources
         })
+    }
+
+    canAffordAddiction(catagory, index) {
+        for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[i].value) {
+                return false
+            }
+        }
+        return true;
     }
 
     render() {
@@ -76,7 +87,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResource={this.resourceUpdate}/>
+                                                <AddictionList updateResource={this.resourceUpdate} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
