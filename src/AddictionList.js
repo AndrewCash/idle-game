@@ -18,23 +18,23 @@ class AddictionList extends React.Component {
                         <Tab eventKey="internet" title="Internet">
                             <Addiction
                                        updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[0]}
+                                       addictionData= {addictionData[0][0]}
                             />
                             <Addiction
                                        updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[1]}
+                                       addictionData= {addictionData[0][1]}
                             />
                             <Addiction
                                        updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[2]}
+                                       addictionData= {addictionData[0][2]}
                             />
                             <Addiction
                                        updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[3]}
+                                       addictionData= {addictionData[0][3]}
                             />
                             <Addiction
                                        updateResource={this.props.updateResource}
-                                       addictionData= {addictionData[4]}
+                                       addictionData= {addictionData[0][4]}
                             />
                         </Tab>
                         <Tab eventKey="food" title="Food">

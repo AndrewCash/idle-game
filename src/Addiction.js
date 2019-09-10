@@ -30,10 +30,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(this.props.addictionData.ids, this.props.addictionData.deltas)
-            // setTimeout(() => {
-            //     this.state.allowClick = true
-            // }, 5000)
+            this.props.updateResource(this.props.addictionData.resIds, this.props.addictionData.deltas)
         }
     }
 
