@@ -13,7 +13,6 @@ class Addiction extends React.Component {
         super(props)
 
         this.state = {
-            purchased: this.props.purchased,
             allowClick: true,
             barWidth: 0
         }
@@ -69,7 +68,7 @@ class Addiction extends React.Component {
 
     render() {
 
-        if (this.state.purchased) {
+        if (this.props.isPurchased) {
             return (
                 <Container>
                     <Row>
