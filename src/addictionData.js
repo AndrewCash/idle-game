@@ -81,7 +81,8 @@ const addictionData =
                 "tweet at donald trump",
                 "raid area 51",
                 "buy supplements from infowars",
-                "do acid with alex jones"
+                "do acid with alex jones",
+                "take the red pill"
 
             ],
             cooldown: 60*1000,
