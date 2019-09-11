@@ -40,7 +40,7 @@ const addictionData =
         },
         reddit: {
             id: "reddit",
-            purchaseText: "Make a Reddit account",
+            purchaseText: "Make a reddit account",
             text: [
                 "care about your karma",
                 "get buried in new",
@@ -56,7 +56,7 @@ const addictionData =
         },
         chan: {
             id: "chan",
-            purchaseText: "",
+            purchaseText: "become anon",
             text: [
                 "trap threads",
                 "feet thread",
@@ -76,13 +76,13 @@ const addictionData =
         },
         conspiracyTheories: {
             id: "conspiracyTheories",
-            purchaseText: "",
+            purchaseText: "Believe in conspiracy theories",
             text: [
                 "tweet at donald trump",
                 "raid area 51",
                 "buy supplements from infowars",
                 "do acid with alex jones",
-                "take the red pill"
+                "take the red pillgit"
 
             ],
             cooldown: 60*1000,
