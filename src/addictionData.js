@@ -9,7 +9,10 @@ const addictionData =
             id: "coolmathgames",
             purchaseText: "",
             text: [
-                "Visit coolmathgames.com"
+                "visit coolmathgames.com",
+                "check on your Webkinz",
+                "decorate your igloo",
+                "spin the wheel of wow"
             ],
             cooldown: 5*1000,
             resIds: [id.HAP],
@@ -22,7 +25,11 @@ const addictionData =
             id: "facebook",
             purchaseText: "Make a Facebook account",
             text: [
-                "Look at Facebook memes"
+                "stalk your ex's feed",
+                "look at memes",
+                "drunk post racist rant",
+                "argue over politics with distant relative",
+                "make earth sandwich with indian guy"
             ],
             cooldown: 2*1000,
             resIds: [id.HAP],
@@ -35,7 +42,10 @@ const addictionData =
             id: "reddit",
             purchaseText: "",
             text: [
-                "Read Reddit threads"
+                "care about your karma",
+                "get buried in new",
+                "write comment that gets guilded",
+
             ],
             cooldown: 10*1000,
             resIds: [id.HAP, id.TECH],
@@ -48,7 +58,14 @@ const addictionData =
             id: "chan",
             purchaseText: "",
             text: [
-                "Look at traps on 4chan"
+                "trap threads",
+                "feet thread",
+                "ylyl",
+                "iaots best album",
+                "jenny death when",
+                "pool's closed",
+                "hoard frog photos"
+
             ],
             cooldown: 30*1000,
             resIds: [id.HAP, id.TECH],
@@ -61,7 +78,11 @@ const addictionData =
             id: "conspiracyTheories",
             purchaseText: "",
             text: [
-                "Listen to Alex Jones"
+                "tweet at donald trump",
+                "raid area 51",
+                "buy supplements from infowars",
+                "do acid with alex jones"
+
             ],
             cooldown: 60*1000,
             resIds: [id.HAP],
