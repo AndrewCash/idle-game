@@ -106,25 +106,25 @@ class Game extends React.Component {
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
-                                    <Row class="text-right">
+                                    <Row >
                                         <Col>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "royalblue"}}>Happiness: </Nav.Link>
+                                                <Nav.Link className="text-right" style={{color: "royalblue"}}>Happiness: </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "orange"}}>Fat: </Nav.Link>
+                                                <Nav.Link className="text-right" style={{color: "orange"}}>Fat: </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "orangered"}}>Clout: </Nav.Link>
+                                                <Nav.Link className="text-right" style={{color: "orangered"}}>Clout: </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "red"}}>Tech: </Nav.Link>
+                                                <Nav.Link className="text-right" style={{color: "red"}}>Tech: </Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "green"}}>Money: </Nav.Link>
+                                                <Nav.Link className="text-right" style={{color: "green"}}>Money: </Nav.Link>
                                             </Nav.Item>
                                         </Col>
-                                        <Col>
+                                        <Col >
                                             <Nav.Item>
                                                 <Nav.Link style={{color: "royalblue"}}>{this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
