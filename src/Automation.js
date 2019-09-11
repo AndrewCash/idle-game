@@ -7,7 +7,7 @@ import {
           OverlayTrigger
        } from 'react-bootstrap'
 
-class AutomationUpgrades extends React.Component {
+class Automation extends React.Component {
 
     render() {
 
@@ -53,4 +53,4 @@ class AutomationUpgrades extends React.Component {
         )
     }
 }
-export default AutomationUpgrades
+export default Automation

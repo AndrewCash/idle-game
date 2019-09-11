@@ -10,8 +10,9 @@ import {
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
-import AutomationUpgrades from './AutomationUpgrades.js'
+import Automation from './Automation.js'
 import addictionData from './addictionData'
+import Upgrades from './Upgrades.js'
 
 class Game extends React.Component {
     constructor() {
@@ -87,6 +88,9 @@ class Game extends React.Component {
                                             <Nav.Item>
                                                 <Nav.Link eventKey="automation">Automation</Nav.Link>
                                             </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link eventKey="upgrades">Upgrades</Nav.Link>
+                                            </Nav.Item>
                                         </Nav>
                                     </Col>
                                     <Col sm={10}>
@@ -97,7 +101,12 @@ class Game extends React.Component {
                                         </Tab.Content>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="automation">
-                                                <AutomationUpgrades />
+                                                <Automation />
+                                            </Tab.Pane>
+                                        </Tab.Content>
+                                        <Tab.Content>
+                                            <Tab.Pane eventKey="upgrades">
+                                                <Upgrades />
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Col>
