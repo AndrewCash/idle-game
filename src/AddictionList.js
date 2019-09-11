@@ -1,5 +1,6 @@
 import React from "react"
 import Addiction from "./Addiction"
+import resEnum from "./resEnum.js"
 import addictionData from "./addictionData.js"
 import {
     Button,
@@ -11,14 +12,25 @@ import {
 
 class AddictionList extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
-        this.state = {
-            purchasedAddictions: [addictionData[0].map(add => {
-                return add.isUnlocked
-            })]
-        }
+        let catagories = Object.keys(addictionData)
+
+        let initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
+            let addictions = Object.keys(catItem)
+
+            let catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
+                addObj[addictions[index]] = addItem.isUnlocked
+                return addObj
+            }, {})
+
+            catObj[catagories[catagory]] = catagoryObj
+
+            return catObj
+        }, {})
+
+        this.state = {purchasedAddictions: initAddictions}
 
         this.buyAddiction = this.buyAddiction.bind(this)
     }
@@ -35,14 +47,27 @@ class AddictionList extends React.Component {
     }
 
     buyAddiction(catagory, index) {
-        this.setState(prevState => {
-            let output = prevState.purchasedAddictions.map(cat => {return cat})
-            output[catagory][index] = true
+        if (this.canAffordAddiction(catagory, index)) {
+            this.setState(prevState => {
+                let output = prevState.purchasedAddictions.map(cat => {return cat})
+                output[catagory][index] = true
 
-            return {
-                purchasedAddictions: output
+                return {
+                    purchasedAddictions: output
+                }
+            })
+            this.props.updateResources(addictionData[catagory][index].unlockIds, addictionData[catagory][index].unlockCost)
+        }
+    }
+
+    canAffordAddiction(catagory, index) {
+        let idsArray = addictionData[catagory][index].unlockIds
+        for (let i = 0; i < addictionData[catagory][index].unlockIds.length; i++) {
+            if (this.props.resources[idsArray[i]].value < addictionData[catagory][index].unlockCost[i]) {
+                return false
             }
-        })
+        }
+        return true
     }
 
     nextUnlock(catagory) {
@@ -86,29 +111,29 @@ class AddictionList extends React.Component {
                     <Tabs defaultActiveKey="internet">
                         <Tab eventKey="internet" title="Internet">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.coolmathgames}
+                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][1]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 1)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.facebook}
+                                isPurchased= {this.state.purchasedAddictions.internet.facebook}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][2]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 2)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.reddit}
+                                isPurchased= {this.state.purchasedAddictions.internet.reddit}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][3]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 3)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.chan}
+                                isPurchased= {this.state.purchasedAddictions.internet.chan}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][4]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 4)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.conspiracyTheories}
+                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
                             />
 
                             <OverlayTrigger
@@ -132,14 +157,14 @@ class AddictionList extends React.Component {
 
                         <Tab eventKey="food" title="Food">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.cookie}
+                                isPurchased= {this.state.purchasedAddictions.food.cookie}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][1]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 1)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.icecream}
+                                isPurchased= {this.state.purchasedAddictions.food.icecream}
                             />
 {
                             // <OverlayTrigger
@@ -165,18 +190,13 @@ class AddictionList extends React.Component {
 
                         <Tab eventKey="money" title="Money">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[2][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(2, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.mcRonaldsWork}
+                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork}
                             />
                         </Tab>
 
                         <Tab eventKey="drugs" title="Drugs">
-                            <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 0)}
-                            />
                         </Tab>
                     </Tabs>
 

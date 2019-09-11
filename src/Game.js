@@ -38,10 +38,9 @@ class Game extends React.Component {
             resources: resourceArray
         }
         this.resourceUpdate = this.resourceUpdate.bind(this)
-        this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
-    resourceUpdate(ids, deltas) {
+    updateResources(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 for (let i = 0; i < ids.length; i++) {
