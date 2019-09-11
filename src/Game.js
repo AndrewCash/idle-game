@@ -104,21 +104,49 @@ class Game extends React.Component {
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
-                                    <Nav.Item>      
-                                        <Nav.Link style={{color: "royalblue"}}>Happiness: {this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link style={{color: "orange"}}>Fat: {this.state.resources[1].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link style={{color: "orangered"}}>Clout: {this.state.resources[2].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link style={{color: "red"}}>Tech: {this.state.resources[3].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link style={{color: "green"}}>Money: {this.state.resources[4].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
-                                    </Nav.Item>
+                                    <Row class="text-right">
+                                        <Col>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "royalblue"}}>Happiness: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orange"}}>Fat: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orangered"}}>Clout: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "red"}}>Tech: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "green"}}>Money: </Nav.Link>
+                                            </Nav.Item>
+                                        </Col>
+                                        <Col>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "royalblue"}}>{this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orange"}}> {this.state.resources[1].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orangered"}}>{this.state.resources[2].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "red"}}>{this.state.resources[3].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "green"}}>{this.state.resources[4].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                        </Col>
+                                    </Row>
+
+
+
+
+
+
+
                                 </Nav>
                             </Navbar>
                         </Col>
