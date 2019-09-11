@@ -98,25 +98,25 @@ class CatagoryTab extends React.Component {
             return null
         } else {
             return (
-                    <div>
-                        {rows}
-                        <OverlayTrigger
-                            placement="right-start"
-                            delay={{ show: 250, hide: 400 }}
-                            overlay={this.renderTooltip(this.props.catagory, this.nextUnlock(this.props.catagory))}
-                        >
-                            <Button
-                                onClick={event => {
-                                    if (this.props.canAffordAddiction(this.props.catagory, this.nextUnlock(this.props.catagory))) {
-                                        this.buyAddiction(this.nextUnlock(this.props.catagory))
-                                    }
-                                }}
-                                variant="secondary"
-                                >
-                            {addictionData[this.props.catagory][this.nextUnlock(this.props.catagory)].purchaseText}
-                            </Button>
-                        </OverlayTrigger>
-                    </div>
+                <div>
+                    {rows}
+                    <OverlayTrigger
+                        placement="right-start"
+                        delay={{ show: 250, hide: 400 }}
+                        overlay={this.renderTooltip(this.props.catagory, this.nextUnlock(this.props.catagory))}
+                    >
+                        <Button
+                            onClick={event => {
+                                if (this.props.canAffordAddiction(this.props.catagory, this.nextUnlock(this.props.catagory))) {
+                                    this.buyAddiction(this.nextUnlock(this.props.catagory))
+                                }
+                            }}
+                            variant="secondary"
+                            >
+                        {addictionData[this.props.catagory][this.nextUnlock(this.props.catagory)].purchaseText}
+                        </Button>
+                    </OverlayTrigger>
+                </div>
             )
         }
     }
