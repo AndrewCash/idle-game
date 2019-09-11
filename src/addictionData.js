@@ -8,7 +8,12 @@ const addictionData =
         coolmathgames: {
             id: "coolmathgames",
             purchaseText: "",
-            text: "Visit coolmathgames.com",
+            text: [
+                "visit coolmathgames.com",
+                "check on your Webkinz",
+                "decorate your igloo",
+                "spin the wheel of wow"
+            ],
             cooldown: 5*1000,
             resIds: [id.HAP],
             deltas: [5],
@@ -19,7 +24,13 @@ const addictionData =
         facebook: {
             id: "facebook",
             purchaseText: "Make a Facebook account",
-            text: "Look at Facebook memes",
+            text: [
+                "stalk your ex's feed",
+                "look at memes",
+                "drunk post racist rant",
+                "argue over politics with distant relative",
+                "make earth sandwich with indian guy"
+            ],
             cooldown: 2*1000,
             resIds: [id.HAP],
             deltas: [4],
@@ -30,7 +41,12 @@ const addictionData =
         reddit: {
             id: "reddit",
             purchaseText: "Make a Reddit account",
-            text: "Read Reddit threads",
+            text: [
+                "care about your karma",
+                "get buried in new",
+                "write comment that gets guilded",
+
+            ],
             cooldown: 10*1000,
             resIds: [id.HAP, id.TECH],
             deltas: [20, .5],
@@ -41,7 +57,16 @@ const addictionData =
         chan: {
             id: "chan",
             purchaseText: "",
-            text: "Look at traps on 4chan",
+            text: [
+                "trap threads",
+                "feet thread",
+                "ylyl",
+                "iaots best album",
+                "jenny death when",
+                "pool's closed",
+                "hoard frog photos"
+
+            ],
             cooldown: 30*1000,
             resIds: [id.HAP, id.TECH],
             deltas: [100, 1],
@@ -52,7 +77,14 @@ const addictionData =
         conspiracyTheories: {
             id: "conspiracyTheories",
             purchaseText: "",
-            text: "Listen to Alex Jones",
+            text: [
+                "tweet at donald trump",
+                "raid area 51",
+                "buy supplements from infowars",
+                "do acid with alex jones",
+                "take the red pill"
+
+            ],
             cooldown: 60*1000,
             resIds: [id.HAP],
             deltas: [1000],
@@ -68,7 +100,9 @@ const addictionData =
         cookie: {
             id: "cookie",
             purchaseText: "",
-            text: "Put your hand in the cookie jar",
+            text: [
+                "Put your hand in the cookie jar"
+            ],
             cooldown: 10*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [5, 10],
@@ -79,7 +113,9 @@ const addictionData =
         icecream: {
             id: "icecream",
             purchaseText: "",
-            text: "Eat some icecream",
+            text: [
+                "Eat some icecream"
+            ],
             cooldown: 20*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [10, 40],
@@ -90,7 +126,9 @@ const addictionData =
         mcRonaldsEat: {
             id: "mcRonaldsEat",
             purchaseText: "",
-            text: "Eat at McRonalds",
+            text: [
+                "Eat at McRonalds"
+            ],
             cooldown:2*60*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [500, 1000],
@@ -106,7 +144,9 @@ const addictionData =
         mcRonaldsWork: {
             id: "mcRonaldsEat",
             purchaseText: "",
-            text: "Flip burgers",
+            text: [
+                "Flip burgers"
+            ],
             cooldown: 8*1000,
             resIds: [id.MONEY],
             deltas: [10],
@@ -117,7 +157,9 @@ const addictionData =
         pizzaDelivery: {
             id: "pizzaDelivery",
             purchaseText: "",
-            text: "Deliver some pizza",
+            text: [
+                "Deliver some pizza"
+            ],
             cooldown: 30*1000,
             resIds: [id.MONEY],
             deltas: [80],
