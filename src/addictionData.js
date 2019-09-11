@@ -40,7 +40,7 @@ const addictionData =
         },
         reddit: {
             id: "reddit",
-            purchaseText: "",
+            purchaseText: "Make a Reddit account",
             text: [
                 "care about your karma",
                 "get buried in new",
