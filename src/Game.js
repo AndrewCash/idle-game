@@ -19,19 +19,19 @@ class Game extends React.Component {
         super()
         let resourceArray = [
             {
-                id: resEnum.HAP, value: 1000
+                id: resEnum.HAP, value: 1000, multiplier: 1
             },
             {
-                id: resEnum.FAT, value: 0
+                id: resEnum.FAT, value: 0, multiplier: 1
             },
             {
-                id: resEnum.CLOUT, value: 0
+                id: resEnum.CLOUT, value: 0, multiplier: 1
             },
             {
-                id: resEnum.TECH, value: 0
+                id: resEnum.TECH, value: 0, multiplier: 1
             },
             {
-                id: resEnum.MONEY, value: 0
+                id: resEnum.MONEY, value: 0, multiplier: 1
             }
         ]
 
@@ -55,6 +55,20 @@ class Game extends React.Component {
                 return res
             })
 
+            return resources
+        })
+    }
+
+    updateMultipliers(ids, deltas) {
+        this.setState(prevState => {
+            let resources = prevState.resources.map(res => {
+                for (let i = 0; i < ids.length; i++) {
+                    if (res.id === ids[i]) {
+                        res.multiplier += deltas[i]
+                    }
+                }
+                return res
+            })
             return resources
         })
     }
@@ -96,7 +110,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResources={this.updateResources} canAffordAddiction={this.canAffordAddiction}/>
+                                                <AddictionList updateResources={this.updateMultipliers} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
@@ -106,7 +120,7 @@ class Game extends React.Component {
                                         </Tab.Content>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="upgrades">
-                                                <Upgrades />
+                                                <Upgrades updateResources={this.updateResources} canAffordItem={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Col>
