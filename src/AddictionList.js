@@ -10,6 +10,14 @@ import {
     OverlayTrigger
 } from 'react-bootstrap'
 
+const resourceNames = [
+    "Happiness",
+    "Fat",
+    "Clout",
+    "Tech Savvy",
+    "Money"
+]
+
 class AddictionList extends React.Component {
 
     constructor(props) {
@@ -72,7 +80,24 @@ class AddictionList extends React.Component {
         }
     }
 
+    oneLineOfCost(name, cost) {
+        return (
+            <p>{name}: {cost}</p>
+        )
+    }
+
     renderTooltip(catagory, index) {
+        const nameArray = addictionData[catagory][index].unlockIds.map(id => {
+            return resourceNames[id]
+        })
+
+        const costArray = addictionData[catagory][index].unlockCost
+
+        let rows = []
+        for (var i = 0; i < nameArray.length; i++) {
+            rows.push(this.oneLineOfCost(nameArray[i], costArray[i]))
+        }
+
         return (
             <div
                 style={{
@@ -83,7 +108,7 @@ class AddictionList extends React.Component {
                 }}
             >
                 <p>Cost:</p>
-                <p>Happiness: {addictionData[catagory][index].unlockCost[resEnum.HAP]}</p>
+                {rows}
             </div>
         )
     }
@@ -119,7 +144,6 @@ class AddictionList extends React.Component {
                                 addictionData= {addictionData.internet.conspiracyTheories}
                                 isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
                             />
-
                             <OverlayTrigger
                                 placement="right-start"
                                 delay={{ show: 250, hide: 400 }}
@@ -163,9 +187,7 @@ class AddictionList extends React.Component {
                         <Tab eventKey="drugs" title="Drugs">
                         </Tab>
                     </Tabs>
-
                 </Container>
-
             </div>
         )
     }

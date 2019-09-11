@@ -71,8 +71,8 @@ const addictionData =
             resIds: [id.HAP, id.TECH],
             deltas: [100, 1],
             isUnlocked: false,
-            unlockIds: [id.HAP, id.FAT, id.TECH],
-            unlockCost: [10000, 100, 50]
+            unlockIds: [id.HAP, id.TECH],
+            unlockCost: [10000, 50]
         },
         conspiracyTheories: {
             id: "conspiracyTheories",
