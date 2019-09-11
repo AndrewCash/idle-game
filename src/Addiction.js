@@ -73,7 +73,6 @@ class Addiction extends React.Component {
     }
 
     render() {
-
         if (this.props.isPurchased) {
             return (
                 <Container>
