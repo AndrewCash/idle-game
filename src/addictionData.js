@@ -29,7 +29,7 @@ const addictionData =
         },
         reddit: {
             id: "reddit",
-            purchaseText: "",
+            purchaseText: "Make a Reddit account",
             text: "Read Reddit threads",
             cooldown: 10*1000,
             resIds: [id.HAP, id.TECH],
