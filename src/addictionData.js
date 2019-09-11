@@ -8,7 +8,9 @@ const addictionData =
         coolmathgames: {
             id: "coolmathgames",
             purchaseText: "",
-            text: "Visit coolmathgames.com",
+            text: [
+                "Visit coolmathgames.com"
+            ],
             cooldown: 5*1000,
             resIds: [id.HAP],
             deltas: [5],
@@ -19,7 +21,9 @@ const addictionData =
         facebook: {
             id: "facebook",
             purchaseText: "Make a Facebook account",
-            text: "Look at Facebook memes",
+            text: [
+                "Look at Facebook memes"
+            ],
             cooldown: 2*1000,
             resIds: [id.HAP],
             deltas: [4],
@@ -30,7 +34,9 @@ const addictionData =
         reddit: {
             id: "reddit",
             purchaseText: "",
-            text: "Read Reddit threads",
+            text: [
+                "Read Reddit threads"
+            ],
             cooldown: 10*1000,
             resIds: [id.HAP, id.TECH],
             deltas: [20, .5],
@@ -41,7 +47,9 @@ const addictionData =
         chan: {
             id: "chan",
             purchaseText: "",
-            text: "Look at traps on 4chan",
+            text: [
+                "Look at traps on 4chan"
+            ],
             cooldown: 30*1000,
             resIds: [id.HAP, id.TECH],
             deltas: [100, 1],
@@ -52,7 +60,9 @@ const addictionData =
         conspiracyTheories: {
             id: "conspiracyTheories",
             purchaseText: "",
-            text: "Listen to Alex Jones",
+            text: [
+                "Listen to Alex Jones"
+            ],
             cooldown: 60*1000,
             resIds: [id.HAP],
             deltas: [1000],
@@ -68,7 +78,9 @@ const addictionData =
         cookie: {
             id: "cookie",
             purchaseText: "",
-            text: "Put your hand in the cookie jar",
+            text: [
+                "Put your hand in the cookie jar"
+            ],
             cooldown: 10*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [5, 10],
@@ -79,7 +91,9 @@ const addictionData =
         icecream: {
             id: "icecream",
             purchaseText: "",
-            text: "Eat some icecream",
+            text: [
+                "Eat some icecream"
+            ],
             cooldown: 20*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [10, 40],
@@ -90,7 +104,9 @@ const addictionData =
         mcRonaldsEat: {
             id: "mcRonaldsEat",
             purchaseText: "",
-            text: "Eat at McRonalds",
+            text: [
+                "Eat at McRonalds"
+            ],
             cooldown:2*60*1000,
             resIds: [id.HAP, id.FAT],
             deltas: [500, 1000],
@@ -106,7 +122,9 @@ const addictionData =
         mcRonaldsWork: {
             id: "mcRonaldsEat",
             purchaseText: "",
-            text: "Flip burgers",
+            text: [
+                "Flip burgers"
+            ],
             cooldown: 8*1000,
             resIds: [id.MONEY],
             deltas: [10],
@@ -117,7 +135,9 @@ const addictionData =
         pizzaDelivery: {
             id: "pizzaDelivery",
             purchaseText: "",
-            text: "Deliver some pizza",
+            text: [
+                "Deliver some pizza"
+            ],
             cooldown: 30*1000,
             resIds: [id.MONEY],
             deltas: [80],
