@@ -11,6 +11,7 @@ import {
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
+import addictionData from './addictionData'
 
 class Game extends React.Component {
     constructor() {
@@ -36,7 +37,7 @@ class Game extends React.Component {
         this.state = {
             resources: resourceArray
         }
-        this.updateResources = this.updateResources.bind(this)
+        this.resourceUpdate = this.resourceUpdate.bind(this)
     }
 
     updateResources(ids, deltas) {
@@ -51,6 +52,15 @@ class Game extends React.Component {
             })
             return resources
         })
+    }
+
+    canAffordAddiction(catagory, index) {
+        for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[i].value) {
+                return false
+            }
+        }
+        return true;
     }
 
     render() {
@@ -76,7 +86,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResources={this.updateResources} resources={this.state.resources} />
+                                                <AddictionList updateResource={this.resourceUpdate} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
@@ -93,20 +103,20 @@ class Game extends React.Component {
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
-                                    <Nav.Item>
-                                        <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
+                                    <Nav.Item>      
+                                        <Nav.Link style={{color: "royalblue"}}>Happiness: {this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
+                                        <Nav.Link style={{color: "orange"}}>Fat: {this.state.resources[1].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
+                                        <Nav.Link style={{color: "orangered"}}>Clout: {this.state.resources[2].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
+                                        <Nav.Link style={{color: "red"}}>Tech: {this.state.resources[3].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                     </Nav.Item>
                                     <Nav.Item>
-                                        <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
+                                        <Nav.Link style={{color: "green"}}>Money: {this.state.resources[4].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                     </Nav.Item>
                                 </Nav>
                             </Navbar>
