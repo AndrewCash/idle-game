@@ -40,6 +40,7 @@ class Game extends React.Component {
         }
 
         this.updateResources = this.updateResources.bind(this)
+        this.updateMultipliers = this.updateMultipliers.bind(this)
         this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
@@ -76,13 +77,15 @@ class Game extends React.Component {
     canAffordAddiction(catagory, index) {
         for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
             const unlockId = addictionData[catagory][index].unlockIds[i]
-
             if (addictionData[catagory][index].unlockCost[i] > this.state.resources[unlockId].value) {
                 return false
             }
         }
-
         return true
+    }
+
+    canAffordUpgrade(catagory, index) {
+
     }
 
     render() {
@@ -120,7 +123,7 @@ class Game extends React.Component {
                                         </Tab.Content>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="upgrades">
-                                                <Upgrades updateResources={this.updateResources} canAffordItem={this.canAffordAddiction}/>
+                                                <Upgrades updateResources={this.updateResources} canAffordItem={this.canAffordUpgrade}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Col>
