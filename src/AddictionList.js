@@ -2,6 +2,7 @@ import React from "react"
 import Addiction from "./Addiction"
 import resEnum from "./resEnum.js"
 import addictionData from "./addictionData.js"
+import CatagoryTab from "./CatagoryTab.js"
 import {
     Button,
     Container,
@@ -94,7 +95,7 @@ class AddictionList extends React.Component {
         const costArray = addictionData[catagory][index].unlockCost
 
         let rows = []
-        for (var i = 0; i < nameArray.length; i++) {
+        for (let i = 0; i < nameArray.length; i++) {
             rows.push(this.oneLineOfCost(nameArray[i], costArray[i]))
         }
 
@@ -114,77 +115,37 @@ class AddictionList extends React.Component {
     }
 
     render() {
+
+        
         return (
             <div>
                 <Container>
                     <Tabs defaultActiveKey="internet">
                         <Tab eventKey="internet" title="Internet">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.coolmathgames}
-                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames}
+                            <CatagoryTab
+                                catagory="internet"
+                                updateResources= {this.props.updateResources}
+                                isPurchasedObject= {this.state.purchasedAddictions}
+                                canAffordAddiction={this.props.canAffordAddiction}
                             />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.facebook}
-                                isPurchased= {this.state.purchasedAddictions.internet.facebook}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.reddit}
-                                isPurchased= {this.state.purchasedAddictions.internet.reddit}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.chan}
-                                isPurchased= {this.state.purchasedAddictions.internet.chan}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.conspiracyTheories}
-                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
-                            />
-                            <OverlayTrigger
-                                placement="right-start"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={this.renderTooltip("internet", this.nextUnlock("internet"))}
-                                >
-                                <Button
-                                    onClick={event => {
-                                        if (this.props.canAffordAddiction("internet", this.nextUnlock("internet"))) {
-                                            this.buyAddiction("internet", this.nextUnlock("internet"))
-                                        }
-                                    }}
-                                    variant="secondary"
-                                    >
-                                {addictionData["internet"][this.nextUnlock("internet")].purchaseText}
-                                </Button>
-                            </OverlayTrigger>
-
                         </Tab>
 
                         <Tab eventKey="food" title="Food">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.cookie}
-                                isPurchased= {this.state.purchasedAddictions.food.cookie}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.icecream}
-                                isPurchased= {this.state.purchasedAddictions.food.icecream}
+                            <CatagoryTab
+                                catagory="food"
+                                updateResources= {this.props.updateResources}
+                                isPurchasedObject= {this.state.purchasedAddictions}
+                                canAffordAddiction={this.props.canAffordAddiction}
                             />
                         </Tab>
 
                         <Tab eventKey="money" title="Money">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.mcRonaldsWork}
-                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork}
+                            <CatagoryTab
+                                catagory="money"
+                                updateResources= {this.props.updateResources}
+                                isPurchasedObject= {this.state.purchasedAddictions}
+                                canAffordAddiction={this.props.canAffordAddiction}
                             />
-                        </Tab>
-
-                        <Tab eventKey="drugs" title="Drugs">
                         </Tab>
                     </Tabs>
                 </Container>

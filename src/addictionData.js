@@ -107,7 +107,7 @@ const addictionData =
             resIds: [id.HAP, id.FAT],
             deltas: [5, 10],
             isUnlocked: false,
-            unlockIds: [id.HAP, id.FAT],
+            unlockIds: [id.HAP],
             unlockCost: [200]
         },
         icecream: {
