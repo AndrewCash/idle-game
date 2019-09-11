@@ -1,5 +1,6 @@
 import React from "react"
 import Addiction from "./Addiction"
+import resEnum from "./resEnum.js"
 import addictionData from "./addictionData.js"
 import {
     Button,
@@ -11,14 +12,25 @@ import {
 
 class AddictionList extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
 
-        this.state = {
-            purchasedAddictions: [addictionData[0].map(add => {
-                return add.isUnlocked
-            })]
-        }
+        let catagories = Object.keys(addictionData)
+
+        let initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
+            let addictions = Object.keys(catItem)
+
+            let catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
+                addObj[addictions[index]] = addItem.isUnlocked
+                return addObj
+            }, {})
+
+            catObj[catagories[catagory]] = catagoryObj
+
+            return catObj
+        }, {})
+
+        this.state = {purchasedAddictions: initAddictions}
 
         this.buyAddiction = this.buyAddiction.bind(this)
     }
@@ -35,50 +47,62 @@ class AddictionList extends React.Component {
     }
 
     buyAddiction(catagory, index) {
-        this.setState(prevState => {
-            let output = prevState.purchasedAddictions.map(cat => {return cat})
-            output[catagory][index] = true
+        if (this.props.canAffordAddiction(catagory, index)) {
+            this.setState(prevState => {
+                let output = JSON.parse(JSON.stringify(prevState.purchasedAddictions))
+                output[catagory][index] = true
+                return {
+                    purchasedAddictions: output
+                }
+            })
 
-            return {
-                purchasedAddictions: output
-            }
-        })
+
+
+            this.props.updateResources(addictionData[catagory][index].unlockIds, addictionData[catagory][index].unlockCost.map((cost) => {return -1*cost}))
+        }
     }
+
+    // canAffordAddiction(catagory, index) {
+    //     // catagory = "internet", index = "facebook"
+    //     let idsArray = addictionData[catagory][index].unlockIds
+    //     for (let i = 0; i < addictionData[catagory][index].unlockIds.length; i++) {
+    //         if (this.props.resources[idsArray[i]].value < addictionData[catagory][index].unlockCost[i]) {
+    //             return false
+    //         }
+    //     }
+    //     return true
+    // }
 
     nextUnlock(catagory) {
         // return index of next addiction to be unlocked in specified catagory
-
-        let addictionCatagory = this.state.purchasedAddictions[catagory]
-        console.log(addictionCatagory)
-        for (let index = 0; index < addictionCatagory.length; index++) {
-            if (!addictionCatagory[index]) {
-                return (index)
+        // catagory = "internet"
+        const addictionCatagory = this.state.purchasedAddictions[catagory]
+        // console.log(addictionCatagory)
+        for (let i = 0; i < Object.keys(addictionCatagory).length; i++) {
+            if (!Object.values(addictionCatagory)[i]) {
+                return Object.keys(addictionCatagory)[i]
             }
         }
     }
 
-    render() {
-        //console.log(this.state)
-
-        const renderTooltip = (props) => (
+    renderTooltip(catagory, index) {
+        return (
             <div
-                {...props}
                 style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                padding: '2px 10px',
-                color: 'white',
-                borderRadius: 3,
-                ...props.style,
+                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                    padding: '2px 10px',
+                    color: 'white',
+                    borderRadius: 3
                 }}
             >
                 <p>Cost:</p>
-                <p>Happiness: {addictionData[0][this.nextUnlock(0)].unlockCost[0]}</p>
-                <p>Fat:       {addictionData[0][this.nextUnlock(0)].unlockCost[1]}</p>
-                <p>Clout:     {addictionData[0][this.nextUnlock(0)].unlockCost[2]}</p>
-                <p>Tech:      {addictionData[0][this.nextUnlock(0)].unlockCost[3]}</p>
-                <p>Money:     {addictionData[0][this.nextUnlock(0)].unlockCost[4]}</p>
+                <p>Happiness: {addictionData[catagory][index].unlockCost[resEnum.HAP]}</p>
             </div>
-        );
+        )
+    }
+
+    render() {
+        //console.log(this.state)
 
         return (
             <div>
@@ -86,45 +110,45 @@ class AddictionList extends React.Component {
                     <Tabs defaultActiveKey="internet">
                         <Tab eventKey="internet" title="Internet">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.coolmathgames}
+                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][1]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 1)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.facebook}
+                                isPurchased= {this.state.purchasedAddictions.internet.facebook}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][2]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 2)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.reddit}
+                                isPurchased= {this.state.purchasedAddictions.internet.reddit}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][3]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 3)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.chan}
+                                isPurchased= {this.state.purchasedAddictions.internet.chan}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[0][4]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(0, 4)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.internet.conspiracyTheories}
+                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
                             />
 
                             <OverlayTrigger
                                 placement="right-start"
                                 delay={{ show: 250, hide: 400 }}
-                                overlay={renderTooltip}
+                                overlay={this.renderTooltip("internet", this.nextUnlock("internet"))}
                                 >
                                 <Button
                                     onClick={event => {
-                                        if (this.props.canAffordAddiction(0,this.nextUnlock(0))) {
-                                            this.buyAddiction(0, this.nextUnlock(0))
+                                        if (this.props.canAffordAddiction("internet", this.nextUnlock("internet"))) {
+                                            this.buyAddiction("internet", this.nextUnlock("internet"))
                                         }
                                     }}
                                     variant="secondary"
                                     >
-                                Buy {addictionData[0][this.nextUnlock(0)].text}
+                                {addictionData["internet"][this.nextUnlock("internet")].purchaseText}
                                 </Button>
                             </OverlayTrigger>
 
@@ -132,51 +156,26 @@ class AddictionList extends React.Component {
 
                         <Tab eventKey="food" title="Food">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.cookie}
+                                isPurchased= {this.state.purchasedAddictions.food.cookie}
                             />
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][1]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 1)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.icecream}
+                                isPurchased= {this.state.purchasedAddictions.food.icecream}
                             />
-{
-                            // <OverlayTrigger
-                            //     placement="right-start"
-                            //     delay={{ show: 250, hide: 400 }}
-                            //     overlay={renderTooltip}
-                            //     >
-                            //     <Button
-                            //         onClick={event => {
-                            //             if (this.props.canAffordAddiction(1,this.nextUnlock(1))) {
-                            //                 this.buyAddiction(1, this.nextUnlock(1))
-                            //             }
-                            //         }}
-                            //         variant="secondary"
-                            //         >
-                            //     Buy {addictionData[1][this.nextUnlock(1)].text}
-                            //     </Button>
-
-                        //    </OverlayTrigger>
-
-                        }
                         </Tab>
 
                         <Tab eventKey="money" title="Money">
                             <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[2][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(2, 0)}
+                                updateResources={this.props.updateResources}
+                                addictionData= {addictionData.food.mcRonaldsWork}
+                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork}
                             />
                         </Tab>
 
                         <Tab eventKey="drugs" title="Drugs">
-                            <Addiction
-                                updateResource={this.props.updateResource}
-                                addictionData= {addictionData[1][0]}
-                                isPurchased= {this.purchasedAddictionsFalseIfUndefined(1, 0)}
-                            />
                         </Tab>
                     </Tabs>
 

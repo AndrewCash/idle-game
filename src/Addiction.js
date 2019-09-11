@@ -14,7 +14,8 @@ class Addiction extends React.Component {
 
         this.state = {
             allowClick: true,
-            barWidth: 0
+            barWidth: 0,
+            currentTextIndex:0
         }
 
         this.handleClick = this.handleClick.bind(this)
@@ -30,7 +31,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(this.props.addictionData.resIds, this.props.addictionData.deltas)
+            this.props.updateResources(this.props.addictionData.resIds, this.props.addictionData.deltas)
         }
     }
 
@@ -52,7 +53,8 @@ class Addiction extends React.Component {
         this.setState(prevState => {
             return {
                 allowClick: true,
-                barWidth: 0
+                barWidth: 0,
+                currentTextIndex: this.getRandomText()
             }
         })
     }
@@ -64,6 +66,10 @@ class Addiction extends React.Component {
                 barWidth: prevState.barWidth + 100*200/this.props.addictionData.cooldown
             }
         })
+    }
+
+    getRandomText() {
+        return Math.floor(Math.random()*100) % this.props.addictionData.text.length
     }
 
     render() {
@@ -81,7 +87,7 @@ class Addiction extends React.Component {
                                 variant="primary"
                                 block
                                 >
-                            {this.props.addictionData.text}
+                            {this.props.addictionData.text[this.state.currentTextIndex]}
                             </Button>
                         </Col>
 

@@ -18,7 +18,7 @@ class Game extends React.Component {
         super()
         let resourceArray = [
             {
-                id: resEnum.HAP, value: 0
+                id: resEnum.HAP, value: 1000
             },
             {
                 id: resEnum.FAT, value: 0
@@ -37,11 +37,11 @@ class Game extends React.Component {
         this.state = {
             resources: resourceArray
         }
-        this.resourceUpdate = this.resourceUpdate.bind(this)
+        this.updateResources = this.updateResources.bind(this)
         this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
-    resourceUpdate(ids, deltas) {
+    updateResources(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 for (let i = 0; i < ids.length; i++) {
@@ -56,12 +56,14 @@ class Game extends React.Component {
     }
 
     canAffordAddiction(catagory, index) {
+        //            "internet" "facebook"
         for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
-            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[i].value) {
+            const unlockId = addictionData[catagory][index].unlockIds[i]
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[unlockId].value) {
                 return false
             }
         }
-        return true;
+        return true
     }
 
     render() {
@@ -87,7 +89,7 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResource={this.resourceUpdate} canAffordAddiction={this.canAffordAddiction}/>
+                                                <AddictionList updateResources={this.updateResources} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
@@ -140,12 +142,6 @@ class Game extends React.Component {
                                             </Nav.Item>
                                         </Col>
                                     </Row>
-
-
-
-
-
-
 
                                 </Nav>
                             </Navbar>
