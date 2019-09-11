@@ -1,11 +1,11 @@
 import React from 'react'
 import {
-          Button,
-          ProgressBar,
-          Container,
-          Row,
-          Col
-       } from 'react-bootstrap'
+    Button,
+    ProgressBar,
+    Container,
+    Row,
+    Col
+} from 'react-bootstrap'
 
 class Addiction extends React.Component {
 

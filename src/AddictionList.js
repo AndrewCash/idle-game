@@ -22,9 +22,9 @@ class AddictionList extends React.Component {
 
             let catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
                 addObj[addictions[index]] = addItem.isUnlocked
+
                 return addObj
             }, {})
-
             catObj[catagories[catagory]] = catagoryObj
 
             return catObj
@@ -40,9 +40,10 @@ class AddictionList extends React.Component {
         if (this.state.purchasedAddictions[catagory] === undefined) {
             return false
         }
-
         return (
-            this.state.purchasedAddictions[catagory][index] === undefined ? false : this.state.purchasedAddictions[catagory][index]
+            this.state.purchasedAddictions[catagory][index] === undefined ?
+                false :
+                this.state.purchasedAddictions[catagory][index]
         )
     }
 
@@ -51,33 +52,19 @@ class AddictionList extends React.Component {
             this.setState(prevState => {
                 let output = JSON.parse(JSON.stringify(prevState.purchasedAddictions))
                 output[catagory][index] = true
+
                 return {
                     purchasedAddictions: output
                 }
             })
-
-
-
             this.props.updateResources(addictionData[catagory][index].unlockIds, addictionData[catagory][index].unlockCost.map((cost) => {return -1*cost}))
         }
     }
 
-    // canAffordAddiction(catagory, index) {
-    //     // catagory = "internet", index = "facebook"
-    //     let idsArray = addictionData[catagory][index].unlockIds
-    //     for (let i = 0; i < addictionData[catagory][index].unlockIds.length; i++) {
-    //         if (this.props.resources[idsArray[i]].value < addictionData[catagory][index].unlockCost[i]) {
-    //             return false
-    //         }
-    //     }
-    //     return true
-    // }
-
     nextUnlock(catagory) {
         // return index of next addiction to be unlocked in specified catagory
-        // catagory = "internet"
         const addictionCatagory = this.state.purchasedAddictions[catagory]
-        // console.log(addictionCatagory)
+
         for (let i = 0; i < Object.keys(addictionCatagory).length; i++) {
             if (!Object.values(addictionCatagory)[i]) {
                 return Object.keys(addictionCatagory)[i]
@@ -102,8 +89,6 @@ class AddictionList extends React.Component {
     }
 
     render() {
-        //console.log(this.state)
-
         return (
             <div>
                 <Container>
