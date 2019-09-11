@@ -14,7 +14,22 @@ class AddictionList extends React.Component {
     constructor(props) {
         super(props)
 
-        this.state = {purchasedAddictions: }
+        let catagories = Object.keys(addictionData)
+
+        let initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
+            let addictions = Object.keys(catItem)
+
+            let catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
+                addObj[addictions[index]] = addItem.isUnlocked
+                return addObj
+            }, {})
+
+            catObj[catagories[catagory]] = catagoryObj
+
+            return catObj
+        }, {})
+
+        this.state = {purchasedAddictions: initAddictions}
 
         this.buyAddiction = this.buyAddiction.bind(this)
     }
@@ -67,27 +82,27 @@ class AddictionList extends React.Component {
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.internet.coolmathgames}
-                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames}
                             />
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.internet.facebook}
-                                isPurchased= {this.state.purchasedAddictions.internet.facebook.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.internet.facebook}
                             />
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.internet.reddit}
-                                isPurchased= {this.state.purchasedAddictions.internet.reddit.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.internet.reddit}
                             />
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.internet.chan}
-                                isPurchased= {this.state.purchasedAddictions.internet.chan.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.internet.chan}
                             />
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.internet.conspiracyTheories}
-                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
                             />
                             <Button
                                 onClick={event => {
@@ -103,12 +118,12 @@ class AddictionList extends React.Component {
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.food.cookie}
-                                isPurchased= {this.state.purchasedAddictions.food.cookie.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.food.cookie}
                             />
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.food.icecream}
-                                isPurchased= {this.state.purchasedAddictions.food.icecream.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.food.icecream}
                             />
                         </Tab>
 
@@ -116,7 +131,7 @@ class AddictionList extends React.Component {
                             <Addiction
                                 updateResources={this.props.updateResources}
                                 addictionData= {addictionData.food.mcRonaldsWork}
-                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork.isPurchased}
+                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork}
                             />
                         </Tab>
 

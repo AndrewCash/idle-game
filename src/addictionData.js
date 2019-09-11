@@ -5,7 +5,6 @@ const addictionData =
     // *** Start of Internet Tab *** //
 
     internet: {
-        id: "internet",
         coolmathgames: {
             id: "coolmathgames",
             purchaseText: "",
@@ -66,7 +65,6 @@ const addictionData =
     // *** Start of Food Tab *** //
 
     food: {
-        id: "food",
         cookie: {
             id: "cookie",
             purchaseText: "",
@@ -105,7 +103,6 @@ const addictionData =
     // *** Start of Money Tab *** //
 
     money: {
-        id: "money",
         mcRonaldsWork: {
             id: "mcRonaldsEat",
             purchaseText: "",
