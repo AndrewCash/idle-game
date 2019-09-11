@@ -12,10 +12,16 @@ import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
 import addictionData from './addictionData'
+import { instanceOf } from 'prop-types'
+import { withCookies, Cookies } from 'react-cookie'
 
 class Game extends React.Component {
-    constructor() {
-        super()
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    }
+
+    constructor(props) {
+        super(props)
         let resourceArray = [
             {
                 id: resEnum.HAP, value: 1000
@@ -34,8 +40,11 @@ class Game extends React.Component {
             }
         ]
 
+        const { cookies } = props
+        console.log("cookies: ",cookies)
+
         this.state = {
-            resources: resourceArray
+            resources: cookies.get(resourceArray)
         }
 
         this.updateResources = this.updateResources.bind(this)
@@ -43,6 +52,8 @@ class Game extends React.Component {
     }
 
     updateResources(ids, deltas) {
+        const { cookies } = this.props
+
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 for (let i = 0; i < ids.length; i++) {
@@ -53,6 +64,9 @@ class Game extends React.Component {
 
                 return res
             })
+
+            cookies.set('resources', resources, { path: '/' })
+            console.log("set cookie")
 
             return resources
         })
@@ -154,4 +168,4 @@ class Game extends React.Component {
     }
 }
 
-export default Game;
+export default withCookies(Game);
