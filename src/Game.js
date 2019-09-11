@@ -1,12 +1,12 @@
 import React from 'react'
 import {
-          Container,
-          Row,
-          Col,
-          Navbar,
-          Nav,
-          Tab
-       } from 'react-bootstrap'
+    Container,
+    Row,
+    Col,
+    Navbar,
+    Nav,
+    Tab
+} from 'react-bootstrap'
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
@@ -37,6 +37,7 @@ class Game extends React.Component {
         this.state = {
             resources: resourceArray
         }
+
         this.updateResources = this.updateResources.bind(this)
         this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
@@ -49,20 +50,23 @@ class Game extends React.Component {
                         res.value += deltas[i]
                     }
                 }
+
                 return res
             })
+
             return resources
         })
     }
 
     canAffordAddiction(catagory, index) {
-        //            "internet" "facebook"
         for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
             const unlockId = addictionData[catagory][index].unlockIds[i]
+
             if (addictionData[catagory][index].unlockCost[i] > this.state.resources[unlockId].value) {
                 return false
             }
         }
+
         return true
     }
 
@@ -70,7 +74,6 @@ class Game extends React.Component {
         return (
             <div>
                 <h1>Addiction Sim</h1>
-
                 <Container>
                     <Row>
                         <Col sm={9}>
@@ -101,7 +104,6 @@ class Game extends React.Component {
                                 </Row>
                             </Tab.Container>
                         </Col>
-
                         <Col sm={3}>
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
@@ -126,23 +128,22 @@ class Game extends React.Component {
                                         </Col>
                                         <Col>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "royalblue"}}>{this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                                <Nav.Link style={{color: "royalblue"}}>{this.state.resources[resEnum.HAP].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "orange"}}> {this.state.resources[1].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                                <Nav.Link style={{color: "orange"}}> {this.state.resources[resEnum.FAT].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "orangered"}}>{this.state.resources[2].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                                <Nav.Link style={{color: "orangered"}}>{this.state.resources[resEnum.CLOUT].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "red"}}>{this.state.resources[3].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                                <Nav.Link style={{color: "red"}}>{this.state.resources[resEnum.TECH].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
                                             <Nav.Item>
-                                                <Nav.Link style={{color: "green"}}>{this.state.resources[4].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                                <Nav.Link style={{color: "green"}}>{this.state.resources[resEnum.MONEY].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                                             </Nav.Item>
                                         </Col>
                                     </Row>
-
                                 </Nav>
                             </Navbar>
                         </Col>
@@ -151,8 +152,6 @@ class Game extends React.Component {
             </div>
         )
     }
-
-
 }
 
 export default Game;
