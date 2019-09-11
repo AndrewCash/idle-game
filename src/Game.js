@@ -10,13 +10,15 @@ import {
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
+import AutomationUpgrades from './AutomationUpgrades.js'
+import addictionData from './addictionData'
 
 class Game extends React.Component {
     constructor() {
         super()
         let resourceArray = [
             {
-                id: resEnum.HAP, value: 0
+                id: resEnum.HAP, value: 1000
             },
             {
                 id: resEnum.FAT, value: 0
@@ -35,10 +37,11 @@ class Game extends React.Component {
         this.state = {
             resources: resourceArray
         }
-        this.resourceUpdate = this.resourceUpdate.bind(this)
+        this.updateResources = this.updateResources.bind(this)
+        this.canAffordAddiction = this.canAffordAddiction.bind(this)
     }
 
-    resourceUpdate(ids, deltas) {
+    updateResources(ids, deltas) {
         this.setState(prevState => {
             let resources = prevState.resources.map(res => {
                 for (let i = 0; i < ids.length; i++) {
@@ -50,6 +53,17 @@ class Game extends React.Component {
             })
             return resources
         })
+    }
+
+    canAffordAddiction(catagory, index) {
+        //            "internet" "facebook"
+        for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
+            const unlockId = addictionData[catagory][index].unlockIds[i]
+            if (addictionData[catagory][index].unlockCost[i] > this.state.resources[unlockId].value) {
+                return false
+            }
+        }
+        return true
     }
 
     render() {
@@ -75,12 +89,12 @@ class Game extends React.Component {
                                     <Col sm={10}>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="addictions">
-                                                <AddictionList updateResource={this.resourceUpdate}/>
+                                                <AddictionList updateResources={this.updateResources} canAffordAddiction={this.canAffordAddiction}/>
                                             </Tab.Pane>
                                         </Tab.Content>
                                         <Tab.Content>
                                             <Tab.Pane eventKey="automation">
-                                                <p>Keep on chuggin</p>
+                                                <AutomationUpgrades />
                                             </Tab.Pane>
                                         </Tab.Content>
                                     </Col>
@@ -92,21 +106,43 @@ class Game extends React.Component {
                             <Navbar bg="light" expand="lg" className="justify-content-center flex-column">
                                 <Navbar.Brand>Resources</Navbar.Brand>
                                 <Nav className="mr-auto flex-column">
-                                    <Nav.Item>
-                                        <Nav.Link>Happiness: {this.state.resources[0].value}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link>Fat: {this.state.resources[1].value}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link>Clout: {this.state.resources[2].value}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link>Tech: {this.state.resources[3].value}</Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link>Money: {this.state.resources[4].value}</Nav.Link>
-                                    </Nav.Item>
+                                    <Row class="text-right">
+                                        <Col>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "royalblue"}}>Happiness: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orange"}}>Fat: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orangered"}}>Clout: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "red"}}>Tech: </Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "green"}}>Money: </Nav.Link>
+                                            </Nav.Item>
+                                        </Col>
+                                        <Col>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "royalblue"}}>{this.state.resources[0].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orange"}}> {this.state.resources[1].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "orangered"}}>{this.state.resources[2].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "red"}}>{this.state.resources[3].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                            <Nav.Item>
+                                                <Nav.Link style={{color: "green"}}>{this.state.resources[4].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                                            </Nav.Item>
+                                        </Col>
+                                    </Row>
+
                                 </Nav>
                             </Navbar>
                         </Col>

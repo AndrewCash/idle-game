@@ -14,7 +14,8 @@ class Addiction extends React.Component {
 
         this.state = {
             allowClick: true,
-            barWidth: 0
+            barWidth: 0,
+            currentTextIndex:0
         }
 
         this.handleClick = this.handleClick.bind(this)
@@ -30,10 +31,7 @@ class Addiction extends React.Component {
                     barWidth: prevState.barWidth
                 }
             })
-            this.props.updateResource(this.props.addictionData.ids, this.props.addictionData.deltas)
-            // setTimeout(() => {
-            //     this.state.allowClick = true
-            // }, 5000)
+            this.props.updateResources(this.props.addictionData.resIds, this.props.addictionData.deltas)
         }
     }
 
@@ -55,7 +53,8 @@ class Addiction extends React.Component {
         this.setState(prevState => {
             return {
                 allowClick: true,
-                barWidth: 0
+                barWidth: 0,
+                currentTextIndex: this.getRandomText()
             }
         })
     }
@@ -69,29 +68,38 @@ class Addiction extends React.Component {
         })
     }
 
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col className="my-1">
-                    <Button
-                        onClick={event => {
-                            this.handleClick();
-                            this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-                        }}
-                        variant="primary"
-                        block
-                        >
-                    {this.props.addictionData.text}
-                    </Button>
-                    </Col>
+    getRandomText() {
+        return Math.floor(Math.random()*100) % this.props.addictionData.text.length
+    }
 
-                    <Col className="my-3">
-                        <ProgressBar className="my-0" now={this.state.barWidth} />
-                    </Col>
-                </Row>
-            </Container>
-        )
+    render() {
+
+        if (this.props.isPurchased) {
+            return (
+                <Container>
+                    <Row>
+                        <Col className="my-1">
+                            <Button
+                                onClick={event => {
+                                    this.handleClick();
+                                    this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
+                                }}
+                                variant="primary"
+                                block
+                                >
+                            {this.props.addictionData.text[this.state.currentTextIndex]}
+                            </Button>
+                        </Col>
+
+                        <Col className="my-3">
+                            <ProgressBar className="my-0" now={this.state.barWidth} />
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        } else {
+            return null
+        }
     }
 }
 
