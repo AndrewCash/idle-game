@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {
   Button,
   ProgressBar,
-  Container,
   Row,
   Col
 } from 'react-bootstrap'
@@ -75,26 +74,24 @@ class Addiction extends React.Component {
   render () {
     if (this.props.isPurchased) {
       return (
-        <Container>
-          <Row>
-            <Col className='my-1'>
-              <Button
-                onClick={() => {
-                  this.handleClick()
-                  this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-                }}
-                variant='primary'
-                block
-              >
-                {this.props.addictionData.text[this.state.currentTextIndex]}
-              </Button>
-            </Col>
+        <Row>
+          <Col className='my-1'>
+            <Button
+              onClick={() => {
+                this.handleClick()
+                this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
+              }}
+              variant='primary'
+              block
+            >
+              {this.props.addictionData.text[this.state.currentTextIndex]}
+            </Button>
+          </Col>
 
-            <Col className='my-3'>
-              <ProgressBar className='my-0' now={this.state.barWidth} />
-            </Col>
-          </Row>
-        </Container>
+          <Col className='my-3'>
+            <ProgressBar className='my-0' now={this.state.barWidth} />
+          </Col>
+        </Row>
       )
     } else {
       return null

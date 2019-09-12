@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import addictionData from './addictionData.js'
 import CatagoryTab from './CatagoryTab.js'
 import {
-  Container,
   Tabs,
   Tab
 } from 'react-bootstrap'
@@ -33,36 +32,34 @@ class AddictionList extends React.Component {
   render () {
     return (
       <div>
-        <Container>
-          <Tabs defaultActiveKey='internet'>
-            <Tab eventKey='internet' title='Internet'>
-              <CatagoryTab
-                catagory='internet'
-                updateResources={this.props.updateResources}
-                isPurchasedObject={this.state.purchasedAddictions}
-                canAffordAddiction={this.props.canAffordAddiction}
-              />
-            </Tab>
+        <Tabs defaultActiveKey='internet'>
+          <Tab eventKey='internet' title='Internet'>
+            <CatagoryTab
+              catagory='internet'
+              updateResources={this.props.updateResources}
+              isPurchasedObject={this.state.purchasedAddictions}
+              canAffordAddiction={this.props.canAffordAddiction}
+            />
+          </Tab>
 
-            <Tab eventKey='food' title='Food'>
-              <CatagoryTab
-                catagory='food'
-                updateResources={this.props.updateResources}
-                isPurchasedObject={this.state.purchasedAddictions}
-                canAffordAddiction={this.props.canAffordAddiction}
-              />
-            </Tab>
+          <Tab eventKey='food' title='Food'>
+            <CatagoryTab
+              catagory='food'
+              updateResources={this.props.updateResources}
+              isPurchasedObject={this.state.purchasedAddictions}
+              canAffordAddiction={this.props.canAffordAddiction}
+            />
+          </Tab>
 
-            <Tab eventKey='money' title='Money'>
-              <CatagoryTab
-                catagory='money'
-                updateResources={this.props.updateResources}
-                isPurchasedObject={this.state.purchasedAddictions}
-                canAffordAddiction={this.props.canAffordAddiction}
-              />
-            </Tab>
-          </Tabs>
-        </Container>
+          <Tab eventKey='money' title='Money'>
+            <CatagoryTab
+              catagory='money'
+              updateResources={this.props.updateResources}
+              isPurchasedObject={this.state.purchasedAddictions}
+              canAffordAddiction={this.props.canAffordAddiction}
+            />
+          </Tab>
+        </Tabs>
       </div>
     )
   }

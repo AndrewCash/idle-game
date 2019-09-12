@@ -74,7 +74,7 @@ class Game extends React.Component {
     return (
       <div>
         <h1>Addiction Sim</h1>
-        <Container>
+        <Container fluid='true'>
           <Row>
             <Col sm={9}>
               <Tab.Container defaultActiveKey='addictions'>
