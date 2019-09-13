@@ -1,11 +1,5 @@
-import { combineRecuers } from 'redux'
+import { combineReducers } from 'redux'
 
-// export default combineRecuers({
-//
-// })
+export default combineReducers({
 
-const reducers = ()  => {
-  return {test: "test"}
-}
-
-export default reducers
+})
