@@ -74,7 +74,10 @@ class CatagoryTab extends React.Component {
           purchasedAddictions: output
         }
       })
-      this.props.updateResources(addictionData[this.props.catagory][index].unlockIds, addictionData[this.props.catagory][index].unlockCost.map((cost) => { return -1 * cost }))
+      this.props.updateResources(addictionData[this.props.catagory][index].unlockIds,
+        addictionData[this.props.catagory][index].unlockCost.map((cost) => {
+          return -1 * cost
+        }))
     }
   }
 
@@ -120,7 +123,7 @@ class CatagoryTab extends React.Component {
 }
 
 CatagoryTab.propTypes = {
-  catagory: PropTypes.object.isRequired,
+  catagory: PropTypes.string.isRequired,
   isPurchasedObject: PropTypes.object.isRequired,
   canAffordAddiction: PropTypes.func.isRequired,
   updateResources: PropTypes.func.isRequired

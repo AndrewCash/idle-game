@@ -102,7 +102,7 @@ class Addiction extends React.Component {
 Addiction.propTypes = {
   updateResources: PropTypes.func.isRequired,
   addictionData: PropTypes.object.isRequired,
-  isPurchased: PropTypes.object.isRequired
+  isPurchased: PropTypes.bool.isRequired
 }
 
 export default Addiction

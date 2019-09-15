@@ -7,11 +7,27 @@ import {
   Nav,
   Tab
 } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
 import addictionData from './addictionData'
+import { updateResources } from './actions/resourcesActions'
+import { createInitState } from './store.js'
+
+const mapStateToProps = (store) => {
+  console.log('Store: ')
+  console.log(store)
+  return { resources: store.resourcesReducer.resources }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    updateResources: (resourceName, delta) => { dispatch(updateResources(resourceName, delta)) }
+  })
+}
 
 class Game extends React.Component {
   constructor () {
@@ -71,6 +87,8 @@ class Game extends React.Component {
   }
 
   render () {
+    console.log(this.props)
+
     return (
       <div>
         <h1>Addiction Sim</h1>
@@ -92,7 +110,7 @@ class Game extends React.Component {
                   <Col sm={10}>
                     <Tab.Content>
                       <Tab.Pane eventKey='addictions'>
-                        <AddictionList updateResources={this.updateResources} canAffordAddiction={this.canAffordAddiction} />
+                        <AddictionList updateResources={this.props.updateResources} canAffordAddiction={this.canAffordAddiction} />
                       </Tab.Pane>
                     </Tab.Content>
                     <Tab.Content>
@@ -128,19 +146,19 @@ class Game extends React.Component {
                     </Col>
                     <Col>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'royalblue' }}>{this.state.resources[resEnum.HAP].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'royalblue' }}>{this.props.resources.Hap.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'orange' }}> {this.state.resources[resEnum.FAT].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'orange' }}> {this.props.resources.Fat.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'orangered' }}>{this.state.resources[resEnum.CLOUT].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'orangered' }}>{this.props.resources.Clout.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'red' }}>{this.state.resources[resEnum.TECH].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'red' }}>{this.props.resources.Tech.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'green' }}>{this.state.resources[resEnum.MONEY].value.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'green' }}>{this.props.resources.Money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
                       </Nav.Item>
                     </Col>
                   </Row>
@@ -154,4 +172,9 @@ class Game extends React.Component {
   }
 }
 
-export default Game
+Game.propTypes = {
+  resources: PropTypes.object.isRequired,
+  updateResources: PropTypes.func.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Game)

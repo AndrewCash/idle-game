@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux'
 
-export default combineReducers({
+import resourcesReducer from './resourcesReducer'
+import purchasedAddictionsReducer from './purchasedAddictionsReducer'
 
+export default combineReducers({
+  resourcesReducer,
+  purchasedAddictionsReducer
 })
