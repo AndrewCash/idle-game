@@ -15,7 +15,6 @@ import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
 import addictionData from './addictionData'
 import { updateResources } from './actions/resourcesActions'
-import { createInitState } from './store.js'
 
 const mapStateToProps = (store) => {
   console.log('Store: ')
@@ -78,7 +77,7 @@ class Game extends React.Component {
     for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
       const unlockId = addictionData[catagory][index].unlockIds[i]
 
-      if (addictionData[catagory][index].unlockCost[i] > this.state.resources[unlockId].value) {
+      if (addictionData[catagory][index].unlockCost[i] > this.props.resources[unlockId]) {
         return false
       }
     }

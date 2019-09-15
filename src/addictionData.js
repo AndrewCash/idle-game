@@ -1,5 +1,3 @@
-import id from './resEnum.js'
-
 const addictionData =
 {
   //  *  *  *  Start of Internet Tab  *  *  *  //
@@ -15,10 +13,10 @@ const addictionData =
         'spin the wheel of wow'
       ],
       cooldown: 5 * 1000,
-      resIds: [id.HAP],
+      resIds: ['Hap'],
       deltas: [5],
       isUnlocked: true,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [0]
     },
     facebook: {
@@ -32,10 +30,10 @@ const addictionData =
         'make earth sandwich with indian guy'
       ],
       cooldown: 2 * 1000,
-      resIds: [id.HAP],
+      resIds: ['Hap'],
       deltas: [4],
       isUnlocked: false,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [50]
     },
     reddit: {
@@ -48,10 +46,10 @@ const addictionData =
 
       ],
       cooldown: 10 * 1000,
-      resIds: [id.HAP, id.TECH],
+      resIds: ['Hap', 'Tech'],
       deltas: [20, 0.5],
       isUnlocked: false,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [1000]
     },
     chan: {
@@ -68,10 +66,10 @@ const addictionData =
 
       ],
       cooldown: 30 * 1000,
-      resIds: [id.HAP, id.TECH],
+      resIds: ['Hap', 'Tech'],
       deltas: [100, 1],
       isUnlocked: false,
-      unlockIds: [id.HAP, id.TECH],
+      unlockIds: ['Hap', 'Tech'],
       unlockCost: [10000, 50]
     },
     conspiracyTheories: {
@@ -86,10 +84,10 @@ const addictionData =
 
       ],
       cooldown: 60 * 1000,
-      resIds: [id.HAP],
+      resIds: ['Hap'],
       deltas: [1000],
       isUnlocked: false,
-      unlockIds: [id.HAP, id.TECH],
+      unlockIds: ['Hap', 'Tech'],
       unlockCost: [200000, 100]
     }
   },
@@ -104,10 +102,10 @@ const addictionData =
         'Put your hand in the cookie jar'
       ],
       cooldown: 10 * 1000,
-      resIds: [id.HAP, id.FAT],
+      resIds: ['Hap', 'Fat'],
       deltas: [5, 10],
       isUnlocked: false,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [200]
     },
     icecream: {
@@ -117,10 +115,10 @@ const addictionData =
         'Eat some icecream'
       ],
       cooldown: 20 * 1000,
-      resIds: [id.HAP, id.FAT],
+      resIds: ['Hap', 'Fat'],
       deltas: [10, 40],
       isUnlocked: false,
-      unlockIds: [id.HAP, id.FAT],
+      unlockIds: ['Hap', 'Fat'],
       unlockCost: [1000, 200]
     },
     mcRonaldsEat: {
@@ -130,10 +128,10 @@ const addictionData =
         'Eat at McRonalds'
       ],
       cooldown: 2 * 60 * 1000,
-      resIds: [id.HAP, id.FAT],
+      resIds: ['Hap', 'Fat'],
       deltas: [500, 1000],
       isUnlocked: false,
-      unlockIds: [id.HAP, id.FAT],
+      unlockIds: ['Hap', 'Fat'],
       unlockCost: [20000, 1000]
     }
   },
@@ -148,10 +146,10 @@ const addictionData =
         'Flip burgers'
       ],
       cooldown: 8 * 1000,
-      resIds: [id.MONEY],
+      resIds: ['Money'],
       deltas: [10],
       isUnlocked: false,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [20000]
     },
     pizzaDelivery: {
@@ -161,10 +159,10 @@ const addictionData =
         'Deliver some pizza'
       ],
       cooldown: 30 * 1000,
-      resIds: [id.MONEY],
+      resIds: ['Money'],
       deltas: [80],
       isUnlocked: false,
-      unlockIds: [id.HAP],
+      unlockIds: ['Hap'],
       unlockCost: [400000]
     }
   }

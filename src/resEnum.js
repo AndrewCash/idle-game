@@ -1,8 +1,8 @@
 const resEnum = {
-  HAP: 0,
-  FAT: 1,
-  CLOUT: 2,
-  TECH: 3,
-  MONEY: 4
+  HAP: "Hap",
+  FAT: "Fat",
+  CLOUT: "Clout",
+  TECH: "Tech",
+  MONEY: "Money"
 }
 export default resEnum
