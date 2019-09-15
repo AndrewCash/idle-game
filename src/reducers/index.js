@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 
 import resourcesReducer from './resourcesReducer'
-import purchasedAddictionsReducer from './purchasedAddictionsReducer'
+import addictionsReducer from './addictionsReducer'
 
 export default combineReducers({
   resourcesReducer,
-  purchasedAddictionsReducer
+  addictionsReducer
 })

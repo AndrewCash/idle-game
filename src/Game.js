@@ -13,7 +13,7 @@ import { connect } from 'react-redux'
 import resEnum from './resEnum.js'
 import AddictionList from './AddictionList.js'
 import AutomationUpgrades from './AutomationUpgrades.js'
-import addictionData from './addictionData'
+import addictionData from './addictionsData'
 import { updateResources } from './actions/resourcesActions'
 
 const mapStateToProps = (store) => {

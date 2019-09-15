@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import addictionData from './addictionData.js'
+import addictionsData from './addictionsData.js'
 import CatagoryTab from './CatagoryTab.js'
 import {
   Tabs,
@@ -18,9 +18,9 @@ class AddictionList extends React.Component {
   constructor (props) {
     super(props)
 
-    const catagories = Object.keys(addictionData)
+    const catagories = Object.keys(addictionsData)
 
-    const initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
+    const initAddictions = Object.values(addictionsData).reduce((catObj, catItem, catagory) => {
       const addictions = Object.keys(catItem)
 
       const catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
@@ -37,10 +37,10 @@ class AddictionList extends React.Component {
   }
 
   canAffordAddiction (catagory, index) {
-    for (let i = 0; i < addictionData[catagory][index].unlockCost.length; i++) {
-      const unlockId = addictionData[catagory][index].unlockIds[i]
+    for (let i = 0; i < addictionsData[catagory][index].unlockCost.length; i++) {
+      const unlockId = addictionsData[catagory][index].unlockIds[i]
 
-      if (addictionData[catagory][index].unlockCost[i] > this.props.resources[unlockId]) {
+      if (addictionsData[catagory][index].unlockCost[i] > this.resources[unlockId]) {
         return false
       }
     }

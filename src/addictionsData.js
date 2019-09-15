@@ -1,4 +1,4 @@
-const addictionData =
+const addictionsData =
 {
   //  *  *  *  Start of Internet Tab  *  *  *  //
 
@@ -167,4 +167,4 @@ const addictionData =
     }
   }
 }
-export default addictionData
+export default addictionsData

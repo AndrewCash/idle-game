@@ -11,8 +11,12 @@ export default function resourcesReducter (state = {
     return state
   }
   switch (action.type) {
-    case 'UPDATE_' + action.resource.toUpperCase(): {
-      return { ...state, [action.resource]: state.resources[action.resource] + action.payload }
+    case 'UPDATE_RESOURCES': {
+      const prevState = { ...state }
+      for (let i = 0; i < action.resources.length; i++) {
+        prevState.resourcesReducer[action.resources[i]] = state.resourcesReducer.resources[action.resources[i]] + action.payload[i]
+      }
+      return prevState
     } default: {
       return state
     }
