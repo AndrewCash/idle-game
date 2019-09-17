@@ -1,106 +1,109 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
-    Button,
-    ProgressBar,
-    Container,
-    Row,
-    Col
+  Button,
+  ProgressBar,
+  Row,
+  Col
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import addictionsData from './addictionsData'
+import {
+  dontAllowClick,
+  incrementProgressBar,
+  clearProgressBar
+} from './actions/addictionsActions'
+import { updateResources } from './actions/resourcesActions'
 
-class Addiction extends React.Component {
-
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            allowClick: true,
-            barWidth: 0,
-            currentTextIndex:0
-        }
-
-        this.handleClick = this.handleClick.bind(this)
-        this.clearProgBar = this.clearProgBar.bind(this)
-        this.incrementProgBar = this.incrementProgBar.bind(this)
-    }
-
-    handleClick() {
-        if (this.state.allowClick) {
-            this.setState(prevState =>{
-                return {
-                    allowClick: false,
-                    barWidth: prevState.barWidth
-                }
-            })
-            this.props.updateResources(this.props.addictionData.resIds, this.props.addictionData.deltas)
-        }
-    }
-
-    updateProgressBar(clearProgBar, incrementProgBar) {
-        if (this.state.allowClick) {
-            let identity = setInterval(() => progress(this.state.barWidth), 100)
-            function progress(width) {
-                if (width >= 100) {
-                        clearInterval(identity)
-                        clearProgBar()
-                } else {
-                    incrementProgBar()
-                }
-            }
-        }
-    }
-
-    clearProgBar() {
-        this.setState(prevState => {
-            return {
-                allowClick: true,
-                barWidth: 0,
-                currentTextIndex: this.getRandomText()
-            }
-        })
-    }
-
-    incrementProgBar() {
-        this.setState(prevState => {
-            return {
-                allowClick: prevState.allowClick,
-                barWidth: prevState.barWidth + 100*200/this.props.addictionData.cooldown
-            }
-        })
-    }
-
-    getRandomText() {
-        return Math.floor(Math.random()*100) % this.props.addictionData.text.length
-    }
-
-    render() {
-
-        if (this.props.isPurchased) {
-            return (
-                <Container>
-                    <Row>
-                        <Col className="my-1">
-                            <Button
-                                onClick={event => {
-                                    this.handleClick();
-                                    this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-                                }}
-                                variant="primary"
-                                block
-                                >
-                            {this.props.addictionData.text[this.state.currentTextIndex]}
-                            </Button>
-                        </Col>
-
-                        <Col className="my-3">
-                            <ProgressBar className="my-0" now={this.state.barWidth} />
-                        </Col>
-                    </Row>
-                </Container>
-            )
-        } else {
-            return null
-        }
-    }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    allowClick: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].allowClick,
+    barWidth: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].barWidth,
+    currentTextIndex: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].currentTextIndex,
+    isPurchased: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].isUnlocked
+  }
 }
 
-export default Addiction
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    dontAllowClick: () => {
+      dispatch(dontAllowClick(ownProps.catagory, ownProps.index))
+    },
+    incrementProgressBar: () => {
+      dispatch(incrementProgressBar(ownProps.catagory, ownProps.index))
+    },
+    clearProgressBar: () => {
+      dispatch(clearProgressBar(ownProps.catagory, ownProps.index))
+    },
+    updateResources: (ids, deltas) => {
+      dispatch(updateResources(ids, deltas))
+    }
+  }
+}
+
+class Addiction extends React.Component {
+  handleClick () {
+    if (this.props.allowClick) {
+      this.props.dontAllowClick()
+      this.updateProgressBar()
+      this.props.updateResources(
+        addictionsData[this.props.catagory][this.props.index].resIds,
+        addictionsData[this.props.catagory][this.props.index].deltas
+      )
+    }
+  }
+
+  updateProgressBar () {
+    if (this.props.allowClick) {
+      const identity = setInterval(() => progress(this.props.barWidth), 100)
+      const progress = (width) => {
+        if (width >= 100) {
+          this.props.clearProgressBar()
+          clearInterval(identity)
+        } else {
+          this.props.incrementProgressBar()
+        }
+      }
+    }
+  }
+
+  render () {
+    const adData = addictionsData[this.props.catagory][this.props.index]
+    if (this.props.isPurchased) {
+      return (
+        <Row>
+          <Col className='my-1'>
+            <Button
+              onClick={() => { this.handleClick() }}
+              variant='primary'
+              block
+            >
+              {adData.text[this.props.currentTextIndex]}
+            </Button>
+          </Col>
+
+          <Col className='my-3'>
+            <ProgressBar className='my-0' now={this.props.barWidth} />
+          </Col>
+        </Row>
+      )
+    } else {
+      return null
+    }
+  }
+}
+
+Addiction.propTypes = {
+  isPurchased: PropTypes.bool.isRequired,
+  allowClick: PropTypes.bool.isRequired,
+  catagory: PropTypes.string.isRequired,
+  index: PropTypes.string.isRequired,
+  barWidth: PropTypes.number.isRequired,
+  updateResources: PropTypes.func.isRequired,
+  dontAllowClick: PropTypes.func.isRequired,
+  incrementProgressBar: PropTypes.func.isRequired,
+  clearProgressBar: PropTypes.func.isRequired,
+  currentTextIndex: PropTypes.number.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Addiction)

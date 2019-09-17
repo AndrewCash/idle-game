@@ -1,174 +1,85 @@
-import React from "react"
-import Addiction from "./Addiction"
-import resEnum from "./resEnum.js"
-import addictionData from "./addictionData.js"
+import React from 'react'
+import PropTypes from 'prop-types'
+import addictionsData from './addictionsData.js'
+import CatagoryTab from './CatagoryTab.js'
 import {
-    Button,
-    Container,
-    Tabs,
-    Tab,
-    OverlayTrigger
+  Tabs,
+  Tab
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
 
-class AddictionList extends React.Component {
-
-    constructor(props) {
-        super(props)
-
-        let catagories = Object.keys(addictionData)
-
-        let initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
-            let addictions = Object.keys(catItem)
-
-            let catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
-                addObj[addictions[index]] = addItem.isUnlocked
-
-                return addObj
-            }, {})
-            catObj[catagories[catagory]] = catagoryObj
-
-            return catObj
-        }, {})
-
-        this.state = {purchasedAddictions: initAddictions}
-
-        this.buyAddiction = this.buyAddiction.bind(this)
-    }
-
-    purchasedAddictionsFalseIfUndefined(catagory, index) {
-
-        if (this.state.purchasedAddictions[catagory] === undefined) {
-            return false
-        }
-        return (
-            this.state.purchasedAddictions[catagory][index] === undefined ?
-                false :
-                this.state.purchasedAddictions[catagory][index]
-        )
-    }
-
-    buyAddiction(catagory, index) {
-        if (this.props.canAffordAddiction(catagory, index)) {
-            this.setState(prevState => {
-                let output = JSON.parse(JSON.stringify(prevState.purchasedAddictions))
-                output[catagory][index] = true
-
-                return {
-                    purchasedAddictions: output
-                }
-            })
-            this.props.updateResources(addictionData[catagory][index].unlockIds, addictionData[catagory][index].unlockCost.map((cost) => {return -1*cost}))
-        }
-    }
-
-    nextUnlock(catagory) {
-        // return index of next addiction to be unlocked in specified catagory
-        const addictionCatagory = this.state.purchasedAddictions[catagory]
-
-        for (let i = 0; i < Object.keys(addictionCatagory).length; i++) {
-            if (!Object.values(addictionCatagory)[i]) {
-                return Object.keys(addictionCatagory)[i]
-            }
-        }
-    }
-
-    renderTooltip(catagory, index) {
-        return (
-            <div
-                style={{
-                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                    padding: '2px 10px',
-                    color: 'white',
-                    borderRadius: 3
-                }}
-            >
-                <p>Cost:</p>
-                <p>Happiness: {addictionData[catagory][index].unlockCost[resEnum.HAP]}</p>
-            </div>
-        )
-    }
-
-    render() {
-        return (
-            <div>
-                <Container>
-                    <Tabs defaultActiveKey="internet">
-                        <Tab eventKey="internet" title="Internet">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.coolmathgames}
-                                isPurchased= {this.state.purchasedAddictions.internet.coolmathgames}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.facebook}
-                                isPurchased= {this.state.purchasedAddictions.internet.facebook}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.reddit}
-                                isPurchased= {this.state.purchasedAddictions.internet.reddit}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.chan}
-                                isPurchased= {this.state.purchasedAddictions.internet.chan}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.internet.conspiracyTheories}
-                                isPurchased= {this.state.purchasedAddictions.internet.conspiracyTheories}
-                            />
-
-                            <OverlayTrigger
-                                placement="right-start"
-                                delay={{ show: 250, hide: 400 }}
-                                overlay={this.renderTooltip("internet", this.nextUnlock("internet"))}
-                                >
-                                <Button
-                                    onClick={event => {
-                                        if (this.props.canAffordAddiction("internet", this.nextUnlock("internet"))) {
-                                            this.buyAddiction("internet", this.nextUnlock("internet"))
-                                        }
-                                    }}
-                                    variant="secondary"
-                                    >
-                                {addictionData["internet"][this.nextUnlock("internet")].purchaseText}
-                                </Button>
-                            </OverlayTrigger>
-
-                        </Tab>
-
-                        <Tab eventKey="food" title="Food">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.cookie}
-                                isPurchased= {this.state.purchasedAddictions.food.cookie}
-                            />
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.icecream}
-                                isPurchased= {this.state.purchasedAddictions.food.icecream}
-                            />
-                        </Tab>
-
-                        <Tab eventKey="money" title="Money">
-                            <Addiction
-                                updateResources={this.props.updateResources}
-                                addictionData= {addictionData.food.mcRonaldsWork}
-                                isPurchased= {this.state.purchasedAddictions.money.mcRonaldsWork}
-                            />
-                        </Tab>
-
-                        <Tab eventKey="drugs" title="Drugs">
-                        </Tab>
-                    </Tabs>
-
-                </Container>
-
-            </div>
-        )
-    }
+const mapStateToProps = (store) => {
+  return {
+    resources: store.resourcesReducer.resources
+  }
 }
 
-export default AddictionList
+class AddictionList extends React.Component {
+  constructor (props) {
+    super(props)
+
+    const catagories = Object.keys(addictionsData)
+
+    const initAddictions = Object.values(addictionsData).reduce((catObj, catItem, catagory) => {
+      const addictions = Object.keys(catItem)
+
+      const catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
+        addObj[addictions[index]] = addItem.isUnlocked
+
+        return addObj
+      }, {})
+      catObj[catagories[catagory]] = catagoryObj
+
+      return catObj
+    }, {})
+
+    this.state = { purchasedAddictions: initAddictions }
+  }
+
+  canAffordAddiction (catagory, index) {
+    for (let i = 0; i < addictionsData[catagory][index].unlockCost.length; i++) {
+      const unlockId = addictionsData[catagory][index].unlockIds[i]
+
+      if (addictionsData[catagory][index].unlockCost[i] > this.resources[unlockId]) {
+        return false
+      }
+    }
+
+    return true
+  }
+
+  render () {
+    return (
+      <div>
+        <Tabs defaultActiveKey='internet'>
+          <Tab eventKey='internet' title='Internet'>
+            <CatagoryTab
+              catagory='internet'
+              canAffordAddiction={this.canAffordAddiction}
+            />
+          </Tab>
+
+          <Tab eventKey='food' title='Food'>
+            <CatagoryTab
+              catagory='food'
+              canAffordAddiction={this.canAffordAddiction}
+            />
+          </Tab>
+
+          <Tab eventKey='money' title='Money'>
+            <CatagoryTab
+              catagory='money'
+              canAffordAddiction={this.canAffordAddiction}
+            />
+          </Tab>
+        </Tabs>
+      </div>
+    )
+  }
+}
+
+AddictionList.propTypes = {
+  resources: PropTypes.object.isRequired
+}
+
+export default connect(mapStateToProps)(AddictionList)
