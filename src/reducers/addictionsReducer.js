@@ -31,25 +31,29 @@ export default function addictionsReducer (state = { addictions: initAddictions 
       newState.addictions[action.catagory][action.index].isUnlocked = true
 
       return newState
-    } case 'DONT_ALLOW_CLICK': {
+    }
+    case 'DONT_ALLOW_CLICK': {
       const newState = JSON.parse(JSON.stringify(state))
       newState.addictions[action.catagory][action.index].allowClick = false
 
       return newState
-    } case 'INCREMENT_PROGRESS_BAR': {
+    }
+    case 'INCREMENT_PROGRESS_BAR': {
       const cooldown = addictionsData[action.catagory][action.index].cooldown
       const newState = JSON.parse(JSON.stringify(state))
       newState.addictions[action.catagory][action.index].barWidth += (100 * 200 / cooldown)
 
       return newState
-    } case 'CLEAR_PROGRESS_BAR': {
+    }
+    case 'CLEAR_PROGRESS_BAR': {
       const newState = JSON.parse(JSON.stringify(state))
       newState.addictions[action.catagory][action.index].allowClick = true
       newState.addictions[action.catagory][action.index].barWidth = 0
       newState.addictions[action.catagory][action.index].currentTextIndex = getRandomText(action.catagory, action.index)
 
       return newState
-    } default: {
+    }
+    default: {
       return state
     }
   }

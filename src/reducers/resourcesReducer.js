@@ -14,7 +14,8 @@ export default function resourcesReducer (state = {
         nextState.resources[action.resources[i]] += action.payload[i]
       }
       return nextState
-    } default: {
+    }
+    default: {
       return state
     }
   }
