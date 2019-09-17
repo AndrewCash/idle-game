@@ -29,3 +29,11 @@ export function clearProgressBar (catagory, index) {
     index: index
   }
 }
+
+export function buyAutomation (catagory, index) {
+  return {
+    type: 'BUY_AUTOMATION',
+    catagory: catagory,
+    index: index
+  }
+}
