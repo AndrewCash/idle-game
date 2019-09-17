@@ -1,19 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import addictionData from './addictionData.js'
+import addictionsData from './addictionsData.js'
 import CatagoryTab from './CatagoryTab.js'
 import {
   Tabs,
   Tab
 } from 'react-bootstrap'
+import { connect } from 'react-redux'
+
+const mapStateToProps = (store) => {
+  return {
+    resources: store.resourcesReducer.resources
+  }
+}
 
 class AddictionList extends React.Component {
   constructor (props) {
     super(props)
 
-    const catagories = Object.keys(addictionData)
+    const catagories = Object.keys(addictionsData)
 
-    const initAddictions = Object.values(addictionData).reduce((catObj, catItem, catagory) => {
+    const initAddictions = Object.values(addictionsData).reduce((catObj, catItem, catagory) => {
       const addictions = Object.keys(catItem)
 
       const catagoryObj = Object.values(catItem).reduce((addObj, addItem, index) => {
@@ -29,6 +36,18 @@ class AddictionList extends React.Component {
     this.state = { purchasedAddictions: initAddictions }
   }
 
+  canAffordAddiction (catagory, index) {
+    for (let i = 0; i < addictionsData[catagory][index].unlockCost.length; i++) {
+      const unlockId = addictionsData[catagory][index].unlockIds[i]
+
+      if (addictionsData[catagory][index].unlockCost[i] > this.resources[unlockId]) {
+        return false
+      }
+    }
+
+    return true
+  }
+
   render () {
     return (
       <div>
@@ -36,27 +55,21 @@ class AddictionList extends React.Component {
           <Tab eventKey='internet' title='Internet'>
             <CatagoryTab
               catagory='internet'
-              updateResources={this.props.updateResources}
-              isPurchasedObject={this.state.purchasedAddictions}
-              canAffordAddiction={this.props.canAffordAddiction}
+              canAffordAddiction={this.canAffordAddiction}
             />
           </Tab>
 
           <Tab eventKey='food' title='Food'>
             <CatagoryTab
               catagory='food'
-              updateResources={this.props.updateResources}
-              isPurchasedObject={this.state.purchasedAddictions}
-              canAffordAddiction={this.props.canAffordAddiction}
+              canAffordAddiction={this.canAffordAddiction}
             />
           </Tab>
 
           <Tab eventKey='money' title='Money'>
             <CatagoryTab
               catagory='money'
-              updateResources={this.props.updateResources}
-              isPurchasedObject={this.state.purchasedAddictions}
-              canAffordAddiction={this.props.canAffordAddiction}
+              canAffordAddiction={this.canAffordAddiction}
             />
           </Tab>
         </Tabs>
@@ -66,8 +79,7 @@ class AddictionList extends React.Component {
 }
 
 AddictionList.propTypes = {
-  canAffordAddiction: PropTypes.func.isRequired,
-  updateResources: PropTypes.func.isRequired
+  resources: PropTypes.object.isRequired
 }
 
-export default AddictionList
+export default connect(mapStateToProps)(AddictionList)
