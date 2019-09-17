@@ -17,9 +17,10 @@ import { updateResources } from './actions/resourcesActions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    allowClick: state.addictionsReducer[ownProps.catagory][ownProps.index].allowClick,
-    barWidth: state.addictionsReducer[ownProps.catagory][ownProps.index].barWidth,
-    currentTextIndex: state.addictionsReducer[ownProps.catagory][ownProps.index].currentTextIndex
+    allowClick: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].allowClick,
+    barWidth: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].barWidth,
+    currentTextIndex: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].currentTextIndex,
+    isPurchased: state.addictionsReducer.addictions[ownProps.catagory][ownProps.index].isUnlocked
   }
 }
 
@@ -33,6 +34,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     clearProgressBar: () => {
       dispatch(clearProgressBar(ownProps.catagory, ownProps.index))
+    },
+    updateResources: (ids, deltas) => {
+      dispatch(updateResources(ids, deltas))
     }
   }
 }
@@ -54,17 +58,13 @@ class Addiction extends React.Component {
       const identity = setInterval(() => progress(this.props.barWidth), 100)
       const progress = (width) => {
         if (width >= 100) {
-          clearInterval(identity)
           this.props.clearProgressBar()
+          clearInterval(identity)
         } else {
           this.props.incrementProgressBar()
         }
       }
     }
-  }
-
-  getRandomText () {
-    return Math.floor(Math.random() * 100) % addictionsData[this.props.catagory][this.props.index].text.length
   }
 
   render () {
@@ -74,19 +74,16 @@ class Addiction extends React.Component {
         <Row>
           <Col className='my-1'>
             <Button
-              onClick={() => {
-                this.handleClick()
-                this.updateProgressBar(this.clearProgBar, this.incrementProgBar)
-              }}
+              onClick={() => { this.handleClick() }}
               variant='primary'
               block
             >
-              {adData.text[this.state.currentTextIndex]}
+              {adData.text[this.props.currentTextIndex]}
             </Button>
           </Col>
 
           <Col className='my-3'>
-            <ProgressBar className='my-0' now={this.state.barWidth} />
+            <ProgressBar className='my-0' now={this.props.barWidth} />
           </Col>
         </Row>
       )
@@ -105,7 +102,8 @@ Addiction.propTypes = {
   updateResources: PropTypes.func.isRequired,
   dontAllowClick: PropTypes.func.isRequired,
   incrementProgressBar: PropTypes.func.isRequired,
-  clearProgressBar: PropTypes.func.isRequired
+  clearProgressBar: PropTypes.func.isRequired,
+  currentTextIndex: PropTypes.number.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Addiction)

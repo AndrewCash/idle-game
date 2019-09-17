@@ -12,8 +12,8 @@ import { buyAddiction } from './actions/addictionsActions'
 
 const mapStateToProps = (state, ownProps) => {
   const adObj = state.addictionsReducer.addictions[ownProps.catagory]
-  const ad = Object.keys(adObj).reduce((accumulator, addiction, index) => {
-    accumulator[Object.keys(adObj)[index]].isUnlocked = adObj.isUnlocked
+  const ad = Object.keys(adObj).reduce((accumulator, addiction) => {
+    accumulator[addiction] = { isUnlocked: adObj[addiction].isUnlocked }
     return accumulator
   }, {})
 
@@ -38,9 +38,9 @@ class CatagoryTab extends React.Component {
   nextUnlock () {
     // return index of next addiction to be unlocked in specified catagory
 
-    for (let i = 0; i < Object.keys(this.props.purchasedAddicticions).length; i++) {
-      if (!Object.values(this.props.purchasedAddicticions)[i]) {
-        return Object.keys(this.props.purchasedAddicticions)[i]
+    for (let i = 0; i < Object.keys(this.props.purchasedAddictions).length; i++) {
+      if (!Object.values(this.props.purchasedAddictions)[i].isUnlocked) {
+        return Object.keys(this.props.purchasedAddictions)[i]
       }
     }
   }
@@ -70,18 +70,11 @@ class CatagoryTab extends React.Component {
     )
   }
 
-  buyAddiction (index) {
-    if (this.props.canAffordAddiction(this.props.catagory, index)) {
-      this.setState(prevState => {
-        const output = JSON.parse(JSON.stringify(prevState.purchasedAddictions))
-        output[index] = true
-
-        return {
-          purchasedAddictions: output
-        }
-      })
-      this.props.updateResources(addictionData[this.props.catagory][index].unlockIds,
-        addictionData[this.props.catagory][index].unlockCost.map((cost) => {
+  buyAddiction (catagory, index) {
+    if (this.props.canAffordAddiction(catagory, index)) {
+      this.props.buyAddiction(catagory, index)
+      this.props.updateResources(addictionData[catagory][index].unlockIds,
+        addictionData[catagory][index].unlockCost.map((cost) => {
           return -1 * cost
         }))
     }
@@ -97,12 +90,11 @@ class CatagoryTab extends React.Component {
           updateResources={this.props.updateResources}
           catagory={cat}
           index={Object.keys(addictionData[cat])[i]}
-          isPurchased={Object.values(this.props.purchasedAddictions[cat])[i]}
         />
       )
     }
 
-    if (!this.props.canAffordAddiction(cat, Object.keys(this.props.purchasedAddictions[cat])[0])) {
+    if (!this.props.canAffordAddiction(cat, Object.keys(this.props.purchasedAddictions)[0])) {
       return null
     } else {
       return (
@@ -111,12 +103,12 @@ class CatagoryTab extends React.Component {
           <OverlayTrigger
             placement='right-start'
             delay={{ show: 250, hide: 400 }}
-            overlay={this.renderTooltip(cat, this.nextUnlock(cat))}
+            overlay={this.renderTooltip(cat, this.nextUnlock())}
           >
             <Button
               onClick={() => {
                 if (this.props.canAffordAddiction(cat, this.nextUnlock(cat))) {
-                  this.buyAddiction(this.nextUnlock(cat))
+                  this.buyAddiction(cat, this.nextUnlock(cat))
                 }
               }}
               variant='secondary'
@@ -134,7 +126,8 @@ CatagoryTab.propTypes = {
   catagory: PropTypes.string.isRequired,
   purchasedAddictions: PropTypes.object.isRequired,
   canAffordAddiction: PropTypes.func.isRequired,
-  updateResources: PropTypes.func.isRequired
+  updateResources: PropTypes.func.isRequired,
+  buyAddiction: PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatagoryTab)

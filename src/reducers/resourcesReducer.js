@@ -1,4 +1,4 @@
-export default function resourcesReducter (state = {
+export default function resourcesReducer (state = {
   resources: {
     Hap: 5000,
     Fat: 1000,
@@ -7,16 +7,13 @@ export default function resourcesReducter (state = {
     Money: 0
   }
 }, action) {
-  if (action.resource === undefined) {
-    return state
-  }
   switch (action.type) {
     case 'UPDATE_RESOURCES': {
-      const prevState = { ...state }
+      const nextState = JSON.parse(JSON.stringify(state))
       for (let i = 0; i < action.resources.length; i++) {
-        prevState.resourcesReducer[action.resources[i]] = state.resourcesReducer.resources[action.resources[i]] + action.payload[i]
+        nextState.resources[action.resources[i]] += action.payload[i]
       }
-      return prevState
+      return nextState
     } default: {
       return state
     }

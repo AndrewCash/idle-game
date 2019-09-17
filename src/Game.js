@@ -29,34 +29,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Game extends React.Component {
-  constructor () {
-    super()
-    const resourceArray = [
-      {
-        id: resEnum.HAP, value: 1000
-      },
-      {
-        id: resEnum.FAT, value: 0
-      },
-      {
-        id: resEnum.CLOUT, value: 0
-      },
-      {
-        id: resEnum.TECH, value: 0
-      },
-      {
-        id: resEnum.MONEY, value: 0
-      }
-    ]
-
-    this.state = {
-      resources: resourceArray
-    }
-
-    this.updateResources = this.updateResources.bind(this)
-    this.canAffordAddiction = this.canAffordAddiction.bind(this)
-  }
-
   updateResources (ids, deltas) {
     this.setState(prevState => {
       const resources = prevState.resources.map(res => {
@@ -86,8 +58,6 @@ class Game extends React.Component {
   }
 
   render () {
-    console.log(this.props)
-
     return (
       <div>
         <h1>Addiction Sim</h1>
@@ -145,19 +115,29 @@ class Game extends React.Component {
                     </Col>
                     <Col>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'royalblue' }}>{this.props.resources.Hap.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'royalblue' }}>
+                          {this.props.resources.Hap.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'orange' }}> {this.props.resources.Fat.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'orange' }}>
+                          {this.props.resources.Fat.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'orangered' }}>{this.props.resources.Clout.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'orangered' }}>
+                          {this.props.resources.Clout.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'red' }}>{this.props.resources.Tech.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'red' }}>
+                          {this.props.resources.Tech.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                        </Nav.Link>
                       </Nav.Item>
                       <Nav.Item>
-                        <Nav.Link style={{ color: 'green' }}>{this.props.resources.Money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}</Nav.Link>
+                        <Nav.Link style={{ color: 'green' }}>
+                          {this.props.resources.Money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')}
+                        </Nav.Link>
                       </Nav.Item>
                     </Col>
                   </Row>

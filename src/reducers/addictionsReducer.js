@@ -20,31 +20,37 @@ const initAddictions = Object.values(addictionsData).reduce((catObj, catItem, ca
   return catObj
 }, {})
 
-const getRandomText = () => {
-  return Math.floor(Math.random() * 100) % addictionsData[this.props.catagory][this.props.index].text.length
+const getRandomText = (catagory, index) => {
+  return Math.floor(Math.random() * 100) % addictionsData[catagory][index].text.length
 }
 
 export default function addictionsReducer (state = { addictions: initAddictions }, action) {
-  if (action.type === undefined) {
-    return state
-  }
   switch (action.type) {
     case 'BUY_ADDICTION': {
-      return { ...state, [action.catagory[action.index].isUnlocked]: true }
+      const newState = JSON.parse(JSON.stringify(state))
+      newState.addictions[action.catagory][action.index].isUnlocked = true
+
+      return newState
     } case 'DONT_ALLOW_CLICK': {
-      return { ...state, [action.catagory[action.index].allowClick]: false }
+      const newState = JSON.parse(JSON.stringify(state))
+      newState.addictions[action.catagory][action.index].allowClick = false
+
+      return newState
     } case 'INCREMENT_PROGRESS_BAR': {
       const cooldown = addictionsData[action.catagory][action.index].cooldown
-      return { ...state, [action.catagory[action.index].barWidth]: state[action.catagory][action.index].barWidth + 100 * 200 / cooldown }
+      const newState = JSON.parse(JSON.stringify(state))
+      newState.addictions[action.catagory][action.index].barWidth += (100 * 200 / cooldown)
+
+      return newState
     } case 'CLEAR_PROGRESS_BAR': {
-      return {
-        ...state,
-        [action.catagory[action.index].allowClick]: true,
-        [action.catagory[action.index].barWidth]: 0,
-        [action.catagory[action.index].currentTextIndex]: getRandomText()
-      }
+      const newState = JSON.parse(JSON.stringify(state))
+      newState.addictions[action.catagory][action.index].allowClick = true
+      newState.addictions[action.catagory][action.index].barWidth = 0
+      newState.addictions[action.catagory][action.index].currentTextIndex = getRandomText(action.catagory, action.index)
+
+      return newState
     } default: {
-      return { ...state }
+      return state
     }
   }
 }
