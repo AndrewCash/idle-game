@@ -10,7 +10,8 @@ const initAddictions = Object.values(addictionsData).reduce((catObj, catItem, ca
       isUnlocked: addItem.isUnlocked,
       allowClick: true,
       barWidth: 0,
-      currentTextIndex: 0
+      currentTextIndex: 0,
+      isAutomated: false
     }
 
     return addObj
@@ -37,9 +38,8 @@ export default function addictionsReducer (state = { addictions: initAddictions 
 
       return newState
     } case 'INCREMENT_PROGRESS_BAR': {
-      const cooldown = addictionsData[action.catagory][action.index].cooldown
       const newState = JSON.parse(JSON.stringify(state))
-      newState.addictions[action.catagory][action.index].barWidth += (100 * 200 / cooldown)
+      newState.addictions[action.catagory][action.index].barWidth += (100 * 200 / addictionsData[action.catagory][action.index].cooldown)
 
       return newState
     } case 'CLEAR_PROGRESS_BAR': {
@@ -47,6 +47,11 @@ export default function addictionsReducer (state = { addictions: initAddictions 
       newState.addictions[action.catagory][action.index].allowClick = true
       newState.addictions[action.catagory][action.index].barWidth = 0
       newState.addictions[action.catagory][action.index].currentTextIndex = getRandomText(action.catagory, action.index)
+
+      return newState
+    } case 'BUY_AUTOMATION': {
+      const newState = JSON.parse(JSON.stringify(state))
+      newState.addictions[action.catagory][action.index].isAutomated = true
 
       return newState
     } default: {

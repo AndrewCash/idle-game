@@ -1,52 +1,37 @@
 import React from 'react'
-import {
-  Button,
-  Container,
-  Row,
-  Col,
-  OverlayTrigger
-} from 'react-bootstrap'
+import { connect } from 'react-redux'
+import addictionsData from './addictionsData'
+import AutomationUpgrade from './AutomationUpgrade'
+
+const mapStateToProps = (state) => {
+  return {
+    resources: state.resourcesReducer.resources,
+    addictions: state.addictionsReducer.addictions
+  }
+}
 
 class AutomationUpgrades extends React.Component {
   render () {
-    const renderTooltip = () => (
-      <div
-        style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.85)',
-          padding: '2px 10px',
-          color: 'white',
-          borderRadius: 3
-        }}
-      >
-        Costs $1000
-      </div>
-    )
+    const rows = []
 
-    return (
-      <Container>
-        <Row className='justify-content-md-center'>
-          <Col sm='2'>
-            <OverlayTrigger
-              placement='right-start'
-              delay={{ show: 250, hide: 400 }}
-              overlay={renderTooltip}
-            >
-              <Button variant='primary'>
-              Buy
-              </Button>
-            </OverlayTrigger>
-          </Col>
-          <Col sm='6'>
-            <Row className='justify-content-md-center'>
-              <p>Math game bot.</p>
-            </Row>
-            <Row className='justify-content-md-center'>
-              <p>Costs $1000</p>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    )
+    for (let cat = 0; cat < Object.keys(addictionsData).length; cat++) {
+      rows.push(<h2>{Object.keys(this.props.addictions)[cat]}</h2>)
+      for (let i = 0; i < Object.keys(Object.values(addictionsData)[cat]).length; i++) {
+        if (Object.values(Object.values(this.props.addictions)[cat])[i].isUnlocked) {
+          rows.push(
+            <AutomationUpgrade
+              catagory={Object.keys(addictionsData)[cat]}
+              index={Object.keys(Object.values(addictionsData)[cat])[i]}
+            />
+          )
+        } else {
+          break
+        }
+      }
+    }
+
+    return rows
   }
 }
-export default AutomationUpgrades
+
+export default connect(mapStateToProps)(AutomationUpgrades)
