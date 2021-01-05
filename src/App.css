@@ -1,11 +1,13 @@
+/* Dark color pallete pulled from https://colorhunt.co/palette/167893 */
+
 .App {
   text-align: center;
 }
 
-:root {
-    color-scheme: dark;
+body {
+   background: #1b262c;
+   color: #bbe1fa;
 }
-
 Button {
     -moz-box-shadow: 6px 6px 0px -1px #9fb4f2;
 	-webkit-box-shadow: 6px 6px 0px -1px #9fb4f2;
