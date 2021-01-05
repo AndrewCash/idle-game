@@ -89,7 +89,7 @@ class Game extends React.Component {
               </Tab.Container>
             </Col>
             <Col sm={3}>
-              <Navbar bg='light' expand='lg' className='justify-content-center flex-column'>
+              <Navbar expand='lg' className='justify-content-center flex-column' id="resource-box">
                 <Navbar.Brand>Resources</Navbar.Brand>
                 <Nav className='mr-auto flex-column'>
                   <Row>

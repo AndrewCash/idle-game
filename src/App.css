@@ -33,3 +33,9 @@ Button:active {
 	position:relative;
 	top:1px;
 }
+
+#resource-box {
+    background: #0f4c75;
+    border: solid #3282b8;
+    border-radius: 5%;
+}
