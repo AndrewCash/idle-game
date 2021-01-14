@@ -5,7 +5,7 @@ import Game from './Game'
 function App () {
   return (
     <div className='App'>
-      <p>Hello world!</p>
+      <Game />
     </div>
   )
 }
