@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/addiction-sim/static/css/main.6d63c94c.chunk.css",
+    "main.js": "/addiction-sim/static/js/main.1749e0c3.chunk.js",
+    "main.js.map": "/addiction-sim/static/js/main.1749e0c3.chunk.js.map",
+    "runtime-main.js": "/addiction-sim/static/js/runtime-main.97706dfd.js",
+    "runtime-main.js.map": "/addiction-sim/static/js/runtime-main.97706dfd.js.map",
+    "static/js/2.33d0d75f.chunk.js": "/addiction-sim/static/js/2.33d0d75f.chunk.js",
+    "static/js/2.33d0d75f.chunk.js.map": "/addiction-sim/static/js/2.33d0d75f.chunk.js.map",
+    "index.html": "/addiction-sim/index.html",
+    "precache-manifest.0965efd52753b50ef7996abd5668fd33.js": "/addiction-sim/precache-manifest.0965efd52753b50ef7996abd5668fd33.js",
+    "service-worker.js": "/addiction-sim/service-worker.js",
+    "static/css/main.6d63c94c.chunk.css.map": "/addiction-sim/static/css/main.6d63c94c.chunk.css.map",
+    "static/js/2.33d0d75f.chunk.js.LICENSE.txt": "/addiction-sim/static/js/2.33d0d75f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.97706dfd.js",
+    "static/js/2.33d0d75f.chunk.js",
+    "static/css/main.6d63c94c.chunk.css",
+    "static/js/main.1749e0c3.chunk.js"
+  ]
+}
